@@ -1,0 +1,43 @@
+version: '1'
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: study_board
+      TZ: Asia/Seoul
+    networks:
+      - my_network
+    ports:
+      - "3306:3306"
+
+  centos:
+    image: centos
+    container_name: centos
+    depends_on:
+      - mysql
+    networks:
+      - my_network
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./ph:/app
+    command: /bin/sh -c "/usr/sbin/httpd -D FOREGROUND && mkdir -p /run/php-fpm && chown apache:apache /run/php-fpm && php-fpm -D"
+
+  node:
+    image: node
+    container_name: node
+    depends_on:
+      - mysql
+    networks:
+      - my_network
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./node:/app
+
+networks:
+  my_network:
+    driver: bridge
