@@ -9,7 +9,19 @@
 </head>
 <body>
 	<div>
-		<h1>로그인 후 이용 가능합니다.</h1>
-		<button onclick="navigate('/page/user/sign_in.htm')">Sign-in</button>
+		<script>
+			if (!getSession('user_nickname')) {
+				document.body.innerHTML = `
+					<h1>로그인 후 이용 가능합니다.</h1>
+					<button onclick="navigate('/page/user/sign_in.htm')">Sign-in</button>
+				`;
+			} else {
+				let name = getSession('user_nickname');
+				document.body.innerHTML = `
+					<h1>반갑습니다! ${name}님!</h1>
+					<button onclick="navigate('/page/chat/menu.htm')">채팅 시작하기</button>
+				`;
+			}
+		</script>
 	</div>
 </body>

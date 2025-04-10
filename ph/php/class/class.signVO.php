@@ -3,12 +3,10 @@
 	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.common.php');
 
 	class signVO extends commonObject{
-		var $uid;
 		var $user_id;
 		var $user_password;
 		var $user_nickname;
 		var $user_email;
-		var $AUTO_INCREMENT;
 
 		function __construct()
 		{
@@ -42,8 +40,6 @@
 			return $res;
 		}
 
-		function getuid(){return $this->uid;}
-		function setuid($arg){$this->uid = $arg; return $this->uid;}
 		function getuser_id(){return $this->user_id;}
 		function setuser_id($arg){$this->user_id = $arg; return $this->user_id;}
 		function getuser_password(){return $this->user_password;}
@@ -52,7 +48,5 @@
 		function setuser_nickname($arg){$this->user_nickname = $arg; return $this->user_nickname;}
 		function getuser_email(){return $this->user_email;}
 		function setuser_email($arg){$this->user_email = $arg; return $this->user_email;}
-		function getAUTO_INCREMENT(){return $this->AUTO_INCREMENT;}
-		function setAUTO_INCREMENT($arg){$this->AUTO_INCREMENT = $arg; return $this->AUTO_INCREMENT;}
 	}
 ?>

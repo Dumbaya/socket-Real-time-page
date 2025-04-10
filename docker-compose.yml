@@ -37,6 +37,7 @@ services:
       - "3000:3000"
     volumes:
       - ./node:/app
+      - /app/node_modules
 
 networks:
   my_network:
