@@ -1,6 +1,6 @@
-<?
-	include_once($_SERVER['DOCUMENT_ROOT'].'/study_board/php/class/DB.php');
-	include_once($_SERVER['DOCUMENT_ROOT'].'/study_board/php/class/class.commonObject.php');
+<?php
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/DB.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.commonObject.php');
 
 	class commonDAO extends DB{
 		private $dbEncoding = 'UTF-8';
@@ -84,7 +84,6 @@
 			try {
 				return $this->execute();
 			} catch (Exception $e) {
-				echo "<br>".$e;
 				return false;
 			}
 		}
@@ -98,7 +97,6 @@
 			try {
 				return $this->execute();
 			} catch (Exception $e) {
-				echo "<br>".$e;
 				return false;
 			}
 		}

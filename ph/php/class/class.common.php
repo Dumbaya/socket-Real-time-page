@@ -1,6 +1,5 @@
-<?
-	include_once($_SERVER['DOCUMENT_ROOT'].'/study_board/php/class/DB.php');
-	include_once($_SERVER['DOCUMENT_ROOT'].'/study_board/php/session.php');
+<?php
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/DB.php');
 
 	class common{
 		private $secret_key = "study_board_secret_key";
@@ -15,12 +14,6 @@
 			$enc_password = hash('sha256', $password);
 
 			return $enc_password;
-		}
-
-		function setSession($user_id, $user_nickname, $user_role){
-			$_SESSION['user_id'] = $user_id;
-			$_SESSION['user_nickname'] = $user_nickname;
-			$_SESSION['user_role'] = $user_role;
 		}
 
 		function setimg_path($img_name, $dir_path){

@@ -1,4 +1,4 @@
-<?
+<?php
 	class DB{
 		var $con = null;
 		var $stmt = null;
@@ -20,10 +20,8 @@
 		function disconnect(){
 			if ($this->con instanceof PDO) {
         $this->con = null;
-        echo "<script>console.log('PDO 연결 해제 완료')</script>";
 				return true;
 			} else {
-        echo "<script>console.log('연결 객체가 유효하지 않음')</script>";
 				return false;
 			}
 		}
