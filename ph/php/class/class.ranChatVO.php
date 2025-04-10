@@ -34,6 +34,11 @@
 			return $res;
 		}
 
+		function delete(){
+			$res = $this->dao->deleteUser($this);
+			return $res;
+		}
+
 		function getw_user_nickname(){return $this->w_user_nickname;}
 		function setw_user_nickname($arg){$this->w_user_nickname = $arg; return $this->w_user_nickname;}
 		function getstatus(){return $this->status;}

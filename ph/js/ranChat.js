@@ -6,7 +6,7 @@ socket.emit('register_nickname', nickname);
 socket.on('ready_for_match', () => {
   console.log('소켓 등록 완료, 매칭 요청 시작');
 
-  fetch('../../php/ranChat.php', {
+  fetch('../../php/chat/ranChat.php', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -30,14 +30,22 @@ function sendMessage() {
   const msg = document.getElementById('messageInput').value;
   const partner = window.partnerNickname;
 
-  console.log(partner);
   if (partner && msg) {
     socket.emit('send_message', { to: partner, message: msg });
+
+    const now = new Date();
+    const formattedTime = now.toLocaleTimeString();
+
+    const chatBox = document.getElementById('chat');
+    chatBox.innerHTML += `<p><strong>나</strong> [${formattedTime}]: ${msg}</p>`;
+
     document.getElementById('messageInput').value = '';
   }
 }
 
-socket.on('receive_message', ({ from, message }) => {
+socket.on('receive_message', ({ from, message, time }) => {
   const chatBox = document.getElementById('chat');
-  chatBox.innerHTML += `<p><strong>${from}</strong>: ${message}</p>`;
+  const formattedTime = new Date(time).toLocaleTimeString();
+
+  chatBox.innerHTML += `<p><strong>${from}</strong> [${formattedTime}]: ${message}</p>`;
 });

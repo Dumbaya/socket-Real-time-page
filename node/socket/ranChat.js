@@ -16,9 +16,11 @@ module.exports = (socket, io) => {
   socket.on('send_message', ({ to, message }) => {
     const targetSocketId = userMap.get(to);
     if (targetSocketId) {
+      const timestamp = new Date().toISOString();
       io.to(targetSocketId).emit('receive_message', {
         from: socket.nickname,
-        message
+        message,
+        time: timestamp
       });
     }
   });
