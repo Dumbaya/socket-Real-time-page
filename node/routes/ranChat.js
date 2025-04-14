@@ -1,5 +1,6 @@
 const express = require('express');
 const userMap = require('../socket/userMap');
+const partnerMap = require('../socket/partnerMap');
 const router = express.Router();
 
 module.exports = (io) => {
@@ -7,6 +8,9 @@ module.exports = (io) => {
     const { my_nickname, partner_nickname } = req.body;
 
     console.log('POST 요청 받음:', my_nickname, partner_nickname);
+
+    partnerMap.set(my_nickname, partner_nickname);
+    partnerMap.set(partner_nickname, my_nickname);
 
     const mySocket = userMap.get(my_nickname);
     const partnerSocket = userMap.get(partner_nickname);

@@ -14,7 +14,11 @@
 			SELECT * FROM waiting_chat WHERE w_user_nickname=:w_user_nickname
 		";
 		private $cnt_selectQuery = "
-			SELECT COUNT(*) FROM waiting_chat WHERE w_user_nickname != :w_user_nickname
+			SELECT COUNT(*) FROM waiting_chat WHERE w_user_nickname != :w_user_nickname AND status='waiting'
+		";
+
+		private $updateQuery = "
+			UPDATE waiting_chat SET status=:status WHERE w_user_nickname=:w_user_nickname
 		";
 
 		private $deleteQuery = "
@@ -33,6 +37,10 @@
 		}
 		function cnt_selectUser($obj){
 			return $this->select($this->cnt_selectQuery, $obj);
+		}
+
+		function updateUser($obj){
+			return $this->update($this->updateQuery, $obj);
 		}
 		
 		function deleteUser($obj){

@@ -1,4 +1,5 @@
 const userMap = require('./userMap');
+const partnerMap = require('./partnerMap');
 
 module.exports = (socket, io) => {
 	console.log('연결됨:', socket.id);
@@ -12,7 +13,6 @@ module.exports = (socket, io) => {
     socket.emit('ready_for_match');
   });
 
-
   socket.on('send_message', ({ to, message }) => {
     const targetSocketId = userMap.get(to);
     if (targetSocketId) {
@@ -25,10 +25,24 @@ module.exports = (socket, io) => {
     }
   });
 
-  socket.on('disconnect', () => {
-    if (socket.nickname) {
-      userMap.delete(socket.nickname);
-      console.log(`[연결 종료] ${socket.nickname}`);
+  socket.on('exit_chat', ({ nickname, partnerNickname }) => {
+    if (nickname) {
+      if (userMap.has(nickname)) {
+        userMap.delete(nickname);
+      }
+      console.log(`[연결 종료] ${nickname}`);
+
+      const partner = partnerMap.get(nickname);
+      if (partner) {
+        const partnerSocketId = userMap.get(partner);
+        if (partnerSocketId) {
+          io.to(partnerSocketId).emit('partner_disconnected', {
+            message: `${nickname}님이 대화를 종료했습니다.`,
+          });
+        }
+        if (partnerMap.has(nickname)) partnerMap.delete(nickname);
+        if (partnerMap.has(partner)) partnerMap.delete(partner);
+      }
     }
   });
   

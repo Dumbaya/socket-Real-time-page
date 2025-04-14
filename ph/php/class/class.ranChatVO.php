@@ -11,9 +11,10 @@
 			$this->com = new common();
 			$this->dao = new ranChatDAO();
 		}
-		
-		function nickname_bind($user_nickname){
-			$this->setw_user_nickname($user_nickname);
+
+		function f_update($nickname, $status){
+			$this->setw_user_nickname($nickname);
+			$this->setstatus($status);
 		}
 
 		function insert(){
@@ -31,6 +32,11 @@
 		}
 		function cnt_select(){
 			$res = $this->dao->cnt_selectUser($this);
+			return $res;
+		}
+
+		function update(){
+			$res = $this->dao->updateUser($this);
 			return $res;
 		}
 
