@@ -2,16 +2,19 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>랜덤 채팅</title>
+  <title>단체 채팅</title>
 	<script type="text/javascript" src="../../jquery/jquery-3.7.1.min.js"></script>
 	<script type="text/javascript" src="../../js/common.js"></script>
   <script src="http://localhost:3000/socket.io/socket.io.js"></script>
-  <script type="text/javascript" src="../../js/ranChat.js"></script>
+  <script type="text/javascript" src="../../js/chaosChat.js"></script>
 </head>
 <body>
-  <h1>랜덤 채팅</h1>
+  <h1>단체 채팅</h1>
+  <div>
+    <p id="userCount"></p>
+    <ul id="userList"></ul>
+  </div>
   <button onclick="exit()">나가기</button>
-  <button onclick="other_search()">다른 상대 찾기</button>
   <input type="text" id="messageInput" placeholder="메시지를 입력하세요" onkeydown="handleEnter(event)"/>
   <button onclick="sendMessage()">전송</button>
   <div id="chat"></div>

@@ -3,11 +3,11 @@
 	$userData = file_get_contents("php://input");
 	$nickname = json_decode($userData, true);
 	if($nickname && isset($nickname['user_nickname'])){
-		include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.ranChatVO.php');
-		$rv = new ranChatVO();
+		include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.chaosChatVO.php');
+		$cv = new chaosChatVO();
 
-		$rv->setchat_user($nickname['user_nickname']);
-		$rv->delete();
+		$cv->setchat_user($nickname['user_nickname']);
+		$cv->delete();
 		
 		echo json_encode([
 				'flag' => 'success',

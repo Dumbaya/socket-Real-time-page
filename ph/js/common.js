@@ -19,5 +19,4 @@ function getSession(key){
 }
 function removeSession(key){
 	sessionStorage.removeItem(key);
-	navigate('page/homepage.htm');
 }

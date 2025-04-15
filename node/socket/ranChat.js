@@ -26,24 +26,32 @@ module.exports = (socket, io) => {
   });
 
   socket.on('exit_chat', ({ nickname, partnerNickname }) => {
-    if (nickname) {
-      if (userMap.has(nickname)) {
-        userMap.delete(nickname);
-      }
-      console.log(`[연결 종료] ${nickname}`);
-
-      const partner = partnerMap.get(nickname);
-      if (partner) {
-        const partnerSocketId = userMap.get(partner);
-        if (partnerSocketId) {
-          io.to(partnerSocketId).emit('partner_disconnected', {
-            message: `${nickname}님이 대화를 종료했습니다.`,
-          });
-        }
-        if (partnerMap.has(nickname)) partnerMap.delete(nickname);
-        if (partnerMap.has(partner)) partnerMap.delete(partner);
-      }
-    }
+    cleanupChat(nickname, partnerNickname, io);
   });
-  
+
+  socket.on('disconnect', () => {
+    console.log(`[연결 끊김] ${socket.nickname}`);
+    const nickname = socket.nickname;
+    const partner = partnerMap.get(nickname);
+
+    cleanupChat(nickname, partner, io);
+  });
 };
+
+function cleanupChat(nickname, partnerNickname, io) {
+  if (!nickname) return;
+
+  userMap.delete(nickname);
+
+  if (partnerNickname) {
+    const partnerSocketId = userMap.get(partnerNickname);
+    if (partnerSocketId) {
+      io.to(partnerSocketId).emit('partner_disconnected', {
+        message: `${nickname}님이 연결을 종료했습니다.`,
+      });
+    }
+
+    partnerMap.delete(nickname);
+    partnerMap.delete(partnerNickname);
+  }
+}

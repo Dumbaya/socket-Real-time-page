@@ -1,10 +1,20 @@
+$(document).ready(function () {
+	$('#user_id, #user_password').on('keydown', function (e) {
+		if (e.key === 'Enter') {
+			sign_in();
+		}
+	});
+});
+
 function sign_in(){
 	if(!$("#user_id").val()){
 		alert('아이디를 입력해주세요.');
+		$('#user_id').focus();
 		return;
 	}
 	if(!$('#user_password').val()){
 		alert('비밀번호를 입력해주세요.');
+		$('#user_password').focus();
 		return;
 	}
 
@@ -84,4 +94,10 @@ function sign_up(){
 		alert('다시 시도해주세요.');
 		return false;
 	}
+}
+
+function sign_out(){
+	removeSession('user_nickname');
+	removeSession('user_role');
+	navigate('./homepage.htm');
 }

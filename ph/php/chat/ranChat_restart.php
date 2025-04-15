@@ -10,7 +10,7 @@
 		$rv->update();
 		
 		$row = $rv->chk_select();
-		if ($row && $row[0]->{'w_user_nickname'} && $row[0]->{'status'} == 'matched') {
+		if ($row && $row[0]->{'chat_user'} && $row[0]->{'status'} == 'matched') {
 			echo json_encode([
 					'flag' => 'fail',
 					'message' => '이미 매칭된 상태입니다.'
@@ -28,7 +28,7 @@
 		}
 		
 		$row = $rv->select();
-		$partner_nickname = $row[0]->{'w_user_nickname'};
+		$partner_nickname = $row[0]->{'chat_user'};
 		$my_nickname = $nickname['user_nickname'];
 		
 		if (!$my_nickname || !$partner_nickname) {

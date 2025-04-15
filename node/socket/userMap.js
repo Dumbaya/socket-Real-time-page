@@ -11,5 +11,6 @@ module.exports = {
       result[key] = value;
     }
     return result;
-  }
+  },
+  keys: () => Array.from(users.keys())
 };

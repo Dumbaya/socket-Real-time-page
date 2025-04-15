@@ -5,6 +5,7 @@
     <meta charset="EUC-KR">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script type="text/javascript" src="../js/common.js"></script>
+		<script type="text/javascript" src="../js/user.js"></script>
     <title>Homepage</title>
 </head>
 <body>
@@ -20,6 +21,7 @@
 				document.body.innerHTML = `
 					<h1>반갑습니다! ${name}님!</h1>
 					<button onclick="navigate('/page/chat/menu.htm')">채팅 시작하기</button>
+					<button onclick="sign_out()">Sign-out</button>
 				`;
 			}
 		</script>
