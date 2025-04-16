@@ -26,7 +26,7 @@ php_value default_charset \"EUC-KR\"\n\
     Require all granted\n\
 </Directory>" >> /etc/httpd/conf/httpd.conf
 
-RUN sed -i 's|^DocumentRoot "/var/www/html"|DocumentRoot "/app|' /etc/httpd/conf/httpd.conf
+RUN sed -i 's|^DocumentRoot "/var/www/html"|DocumentRoot "/app"|' /etc/httpd/conf/httpd.conf
 
 
 
