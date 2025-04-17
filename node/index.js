@@ -1,6 +1,8 @@
 const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
+const path = require('path');
+const fs = require('fs');
 
 const ranChatHandler = require('./socket/ranChat');
 const ranChatRoute = require('./routes/ranChat');
@@ -23,6 +25,9 @@ app.use((req, res, next) => {
   console.log(`[요청 로그] ${req.method} ${req.url}`);
   next();
 });
+const uploadDir = path.join(__dirname, "uploads");
+if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
+app.use('/downloads', express.static(uploadDir));
 
 const ranChatNamespace = io.of('/ranChat');
 const chaosChatNamespace = io.of('/chaosChat');

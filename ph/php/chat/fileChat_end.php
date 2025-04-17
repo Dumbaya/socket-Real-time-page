@@ -8,32 +8,6 @@
 
 		$fv->setchat_user($nickname['user_nickname']);
 		$fv->delete();
-		
-		$dir = $_SERVER['DOCUMENT_ROOT']."/uploads";
-		
-		$handle = opendir($dir);
-
-		$files = array();
-
-		while(($filename = readdir($handle)) !== false){
-			if ($filename == '.' || $filename == '..') {
-        continue;
-			}
-
-			$filepath = $dir . "/" . $filename;
-			if (is_file($filepath)) {
-				$re_filename = explode('_', $filename);
-        $tmp_filename = end($re_filename);
-
-        $compare_filename = pathinfo($tmp_filename, PATHINFO_FILENAME);
-
-				if($compare_filename == $nickname['user_nickname']){
-					unlink($filepath);
-				}
-			}
-		}
-
-		closedir($handle);
 
 		echo json_encode([
 				'flag' => 'success',

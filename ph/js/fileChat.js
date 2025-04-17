@@ -57,49 +57,16 @@ async function sendZip() {
 		}
 
 		const zipBlob = await zip.generateAsync({ type: "blob" });
-
-		const formData = new FormData();
-		
+		const arrayBuffer = await zipBlob.arrayBuffer();
 		const now = new Date();
-		const formattedTime = now.toLocaleTimeString();
-
+		const formattedTime = now.toLocaleTimeString().replace(/:/g, '-');
 		const filename = `${formattedTime}_${nickname}.zip`;
-		const get_url = '../../uploads/'
-		const replace_filename = filename.replace(/\:/g,'-');
-		formData.append("zipfile", zipBlob, replace_filename);
-		formData.append("user_nickname", nickname);
-		$.ajax({
-			type:'post'
-			,	data: formData
-			,	processData: false
-			,	contentType: false
-			, url: '../../php/chat/fileChat_upload.php'
-			, success: function(result){
-				if(result=='success'){
-					console.log(result);
 
-					socket.emit("zip-upload", {
-						filename: replace_filename,
-						url: get_url,
-						time: formattedTime
-					});
-			
-					const chatBox = document.getElementById('chat');
-			
-					chatBox.innerHTML += 
-					`<p>
-					<strong>나</strong> [${formattedTime}]: <a href="../../php/chat/fileChat_download.php?file=${filename}&url=${get_url}" download><button>${replace_filename}</button></a>
-					</p>`;
-				}
-				else{
-					console.log(result);
-				}
-			}
-			, error : function(xhr, status, error) {
-				alert("서버 연결에 실패했습니다."+error+xhr.responseText);
-			}
-		})
-
+		socket.emit('zip_upload', {
+			buffer: arrayBuffer,
+			filename: filename
+		});
+	
 		document.getElementById('file_upload').value = '';
 	}
 	else{
@@ -110,11 +77,12 @@ async function sendZip() {
 
 socket.on('receive_message', ({ from, filename, url, time }) => {
   const chatBox = document.getElementById('chat');
+	const formattedTime = new Date(time).toLocaleTimeString();
 
-	chatBox.innerHTML += 
-	`<p>
-	<strong>${from}</strong> [${time}]: <a href="../../php/chat/fileChat_download.php?file=${filename}&url=${url}" download><button>${filename}</button></a>
-	</p>`;
+	chatBox.innerHTML += `
+    <p><strong>${from}</strong> [${formattedTime}]: 
+    <a href="http://localhost:3000${url}" download><button>${filename}</button></a></p>
+  `;
 });
 
 socket.on('system_message', (msg) => {
@@ -147,13 +115,6 @@ function exit() {
 				alert("서버 연결에 실패했습니다."+error+xhr.responseText);
 			}
 		})
-  }
-}
-
-function handleEnter(e) {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    sendMessage();
   }
 }
 
