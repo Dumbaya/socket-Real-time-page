@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>채팅방</title>
+	<script type="text/javascript" src="../../jquery/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+  <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="../../js/roomChat.js"></script>
+	<script type="text/javascript" src="../../util/jszip.min.js"></script>
+</head>
+<body>
+  <h1>채팅방</h1>
+  <div>
+    <h1 id="room_title"></h1>
+    <p id="userCount"></p>
+    <ul id="userList"></ul>
+  </div>
+  <button onclick="exit()">방 나가기</button>
+	<textarea id="messageInput" style="width:200px; height:200px;" placeholder="메시지를 입력하세요"></textarea>
+	<input type="file" id="file_upload" multiple/>
+  <button onclick="send()">전송</button>
+  <div id="chat"></div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>채팅방 찾기</title>
+	<script type="text/javascript" src="../../jquery/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+  <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script type="text/javascript" src="../../js/roomChat_menu.js"></script>
+	<script type="text/javascript" src="../../util/jszip.min.js"></script>
+</head>
+<body>
+  <h1>채팅방 찾기</h1>
+  <div>
+    <p id="roomCount"></p>
+    <ul id="roomList"></ul>
+  </div>
+  <button onclick="navigate('./menu.htm');">뒤로가기</button>
+  <button onclick="makeRoom_open_popup()">방만들기</button>
+</body>
+</html>

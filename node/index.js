@@ -10,6 +10,8 @@ const chaosChatHandler = require('./socket/chaosChat');
 const chaosChatRoute = require('./routes/chaosChat');
 const fileChatHandler = require('./socket/fileChat');
 const fileChatRoute = require('./routes/fileChat');
+const roomChatHandler = require('./socket/roomChat');
+const roomChatRoute = require('./routes/roomChat');
 
 const app = express();
 const server = http.createServer(app);
@@ -32,10 +34,12 @@ app.use('/downloads', express.static(uploadDir));
 const ranChatNamespace = io.of('/ranChat');
 const chaosChatNamespace = io.of('/chaosChat');
 const fileChatNamespace = io.of('/fileChat');
+const roomChatNamespace = io.of('/roomChat');
 
 app.use('/ranChat', ranChatRoute(ranChatNamespace));
 app.use('/chaosChat', chaosChatRoute(chaosChatNamespace));
 app.use('/fileChat', fileChatRoute(fileChatNamespace));
+app.use('/roomChat', roomChatRoute(roomChatNamespace));
 
 ranChatNamespace.on('connection', (socket) => {
   console.log('[ranChat] User connected:', socket.id);
@@ -52,6 +56,10 @@ fileChatNamespace.on('connection', (socket) => {
   fileChatHandler(socket, fileChatNamespace);
 })
 
+roomChatNamespace.on('connection', (socket) => {
+  console.log('[roomChat] User connected:', socket.id);
+  roomChatHandler(socket, roomChatNamespace);
+})
 server.listen(3000, () => {
   console.log('Server is running on port 3000');
 });

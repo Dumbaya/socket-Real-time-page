@@ -10,6 +10,10 @@ function chk_session(){
 function navigate(arg){
 	window.location.href=arg;
 }
+function popup_navigate(arg){
+	self.close();
+	opener.location.href=arg;
+}
 
 function setSession(key, value){
 	sessionStorage.setItem(key, value);
