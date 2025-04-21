@@ -1,24 +1,23 @@
-version: '1'
 services:
-  mysql:
+  mysql_dev:
     image: mysql:5.7
-    container_name: mysql
+    container_name: mysql_dev
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: study_board
       TZ: Asia/Seoul
     networks:
-      - my_network
+      - my_network_dev
     ports:
       - "3306:3306"
 
-  centos:
-    image: centos
-    container_name: centos
+  centos_dev:
+    build: ./ph
+    container_name: centos_dev
     depends_on:
-      - mysql
+      - mysql_dev
     networks:
-      - my_network
+      - my_network_dev
     ports:
       - "80:80"
       - "443:443"
@@ -26,13 +25,13 @@ services:
       - ./ph:/app
     command: /bin/sh -c "/usr/sbin/httpd -D FOREGROUND && mkdir -p /run/php-fpm && chown apache:apache /run/php-fpm && php-fpm -D"
 
-  node:
-    image: node
-    container_name: node
+  node_dev:
+    build: ./node
+    container_name: node_dev
     depends_on:
-      - mysql
+      - mysql_dev
     networks:
-      - my_network
+      - my_network_dev
     ports:
       - "3000:3000"
     volumes:
@@ -40,5 +39,5 @@ services:
       - /app/node_modules
 
 networks:
-  my_network:
+  my_network_dev:
     driver: bridge

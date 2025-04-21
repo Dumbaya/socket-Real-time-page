@@ -3,6 +3,7 @@ const http = require('http');
 const socketIO = require('socket.io');
 const path = require('path');
 const fs = require('fs');
+const cors = require('cors');
 
 const ranChatHandler = require('./socket/ranChat');
 const ranChatRoute = require('./routes/ranChat');
@@ -15,10 +16,12 @@ const roomChatRoute = require('./routes/roomChat');
 
 const app = express();
 const server = http.createServer(app);
+app.use(cors());
 const io = socketIO(server, {
   cors: {
-    origin: "*",
-    methods: ["GET", "POST"]
+    origin: 'http://localhost',
+    methods: ['GET', 'POST'],
+    credentials: true
   }
 });
 
@@ -27,6 +30,7 @@ app.use((req, res, next) => {
   console.log(`[요청 로그] ${req.method} ${req.url}`);
   next();
 });
+
 const uploadDir = path.join(__dirname, "uploads");
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
 app.use('/downloads', express.static(uploadDir));
@@ -60,6 +64,7 @@ roomChatNamespace.on('connection', (socket) => {
   console.log('[roomChat] User connected:', socket.id);
   roomChatHandler(socket, roomChatNamespace);
 })
+
 server.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
