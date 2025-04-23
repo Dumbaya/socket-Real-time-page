@@ -12,7 +12,7 @@ archiver.registerFormat('zip-encryptable', archiverZipEncryptable);
 
   const zipOutput = fs.createWriteStream(tempZipPath);
   const archive = archiver('zip-encryptable', {
-    zlib: { level: 9 },
+    zlib: { level: 3 },
     forceLocalTime: true,
     password,
     forceLocalFileHeaderEncoding: true,

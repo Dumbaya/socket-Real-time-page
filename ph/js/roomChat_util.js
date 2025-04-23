@@ -4,9 +4,18 @@ document.addEventListener('DOMContentLoaded', () => {
 	const dropZone = document.getElementById('drop-zone');
 	const fileInput = document.getElementById('file_upload');
 	const fileListDisplay = document.getElementById('file_list');
+	const fileListWrap = document.getElementById('fileList_wrap');
 
 	function renderFileList() {
 		fileListDisplay.innerHTML = '';
+
+		if (sharedFiles.length === 0) {
+			fileListWrap.style.display = 'none';
+			return;
+		}
+
+		fileListWrap.style.display = 'block';
+
 		sharedFiles.forEach((file, index) => {
 			const tr = document.createElement('tr');
 

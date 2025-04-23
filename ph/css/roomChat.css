@@ -74,6 +74,9 @@
   word-break: break-word;
   white-space: pre-wrap;
 }
+.bubble a {
+  text-decoration: none;
+}
 .grid-wrapper.right .bubble {
   background-color: #d1e7dd;
 }
@@ -115,58 +118,99 @@
   width: 30%;
   height: 650px;
   border-right: 1px solid #aaa;
-}
-
-#drop-zone {
-  border: 2px dashed #aaa;
-  padding: 30px;
-  text-align: center;
-  color: #777;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  cursor: pointer;
+  background-color: #f9f9f9;
+  font-family: 'Pretendard', sans-serif;
+  overflow-y: auto;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
 }
 
 #div_msg {
   width: 100%;
   display: flex;
+  margin-bottom: 10px;
 }
 #messageInput {
-  width: 480px;
-  height: auto;
+  flex: 1;
   min-height: 40px;
-  max-height: 150px;
-  overflow: auto;
+  max-height: 120px;
+  padding: 10px;
+  font-family: monospace;
+  resize: none;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
 }
 #send_btn {
   margin-left: 10px;
-  width: 50px;
+  width: 60px;
   height: 50px;
+  background-color: #c3d1e7;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+#send_btn:hover {
+  background-color: #b0c4de;
+}
+
+#drop-zone {
+  border: 2px dashed #aaa;
+  padding: 20px;
+  text-align: center;
+  color: #555;
+  margin: 10px 0;
+  border-radius: 10px;
+  background-color: #ffffff;
+  transition: background-color 0.3s;
+}
+#drop-zone:hover {
+  background-color: #f1f3f5;
 }
 
 #div_fileSend {
   width: 100%;
   display: flex;
-}
-#fileList_wrap {
-  margin-top: 30px;
-  overflow: auto;
-  width: 500px;
-  height: 300px;
+  align-items: center;
+  margin-top: 10px;
 }
 #file_password {
   margin-left: auto;
-  width: 200px;
-  height: 50px;
+  width: 180px;
+  height: 40px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }
-#selectAllBtn {
-  width: 100px;
-  height: 50px;
+
+#selectAllBtn,
+#deleteSelectedBtn {
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background-color: #dee2e6;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
 }
 #deleteSelectedBtn {
   margin-left: 10px;
-  width: 100px;
-  height: 50px;
+}
+#selectAllBtn:hover,
+#deleteSelectedBtn:hover {
+  background-color: #ced4da;
+}
+
+#fileList_wrap {
+  display: none;
+  margin-top: 20px;
+  overflow-y: auto;
+  max-height: 280px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #fff;
 }
 
 /* 유저 리스트 */
@@ -174,10 +218,25 @@
   padding: 10px;
   width: 10%;
   height: 650px;
+  background-color: #f8f9fa;
+  border-left: 1px solid #aaa;
+  font-family: 'Pretendard', sans-serif;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+#userCount {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
 }
 
 #userList_wrap {
-  overflow: auto;
-  width: 200px;
-  height: 300px;
+  overflow-y: auto;
+  max-height: 580px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 10px;
+  font-size: 14px;
 }
