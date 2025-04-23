@@ -82,8 +82,8 @@ socket.on('joined_room_chat', ({ room }) => {
 
 async function send() {
 	const msg = document.getElementById('messageInput').value;
-	const files = document.getElementById('file_upload').files;
-	if(!msg && ( !files || files.length==0 ) ){
+  
+	if(!msg && sharedFiles.length == 0 ){
 		return alert('메시지나 파일을 확인해주세요.');
 	}
 
@@ -92,14 +92,14 @@ async function send() {
 
 		document.getElementById('messageInput').value = '';
 	}
-	if(files && files.length!=0){
+	if(sharedFiles.length > 0){
 		const formData = new FormData();
 		const password = document.getElementById('file_password').value;
 		const now = new Date();
 		const formattedTime = now.toLocaleTimeString().replace(/:/g, '-');
 		const filename = `${formattedTime}_${nickname}`;
 
-		for(let file of files){
+		for(let file of sharedFiles){
       console.log("파일 이름:", file.name);
       console.log("파일 이름:", encodeURIComponent(file.name));
 			formData.append('files', file);
@@ -124,7 +124,8 @@ async function send() {
           url: result.downloadURL,
         });
 
-        document.getElementById('file_upload').value = '';
+        sharedFiles = [];
+        document.getElementById('file_list').innerHTML = '';
 				document.getElementById('file_password').value = '';
       } else {
         alert('파일 업로드 실패: ' + result.message);

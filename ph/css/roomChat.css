@@ -3,3 +3,12 @@
   line-height: 1.5;
   font-family: 'Pretendard', sans-serif;
 }
+
+#drop-zone {
+  border: 2px dashed #aaa;
+  padding: 30px;
+  text-align: center;
+  color: #777;
+  margin-bottom: 10px;
+  cursor: pointer;
+}

@@ -7,7 +7,7 @@
 	<script type="text/javascript" src="../../js/common.js"></script>
   <script src="http://localhost:3000/socket.io/socket.io.js"></script>
 	<script type="text/javascript" src="../../js/roomChat.js"></script>
-	<script type="text/javascript" src="../../util/jszip.min.js"></script>
+  <script type="text/javascript" src="../../js/roomChat_util.js"></script>
   <link rel="stylesheet" href="../../css/roomChat.css">
 </head>
 <body>
@@ -21,7 +21,9 @@
   <div>
     <button onclick="exit()">방 나가기</button>
     <textarea id="messageInput" style="width:300px; height:auto; min-height:40px; max-height:150px; overflow:auto;" placeholder="메시지를 입력하세요"></textarea>
-    <input type="file" id="file_upload" multiple/>
+    <div id="drop-zone">여기로 파일을 드래그하거나 클릭해서 업로드하세요</div>
+    <input type="file" id="file_upload" multiple style="display:none" />
+    <ul id="file_list"></ul>
     <input type="password" id="file_password" placeholder="파일 업로드 비밀번호">
     <button onclick="send()">전송</button>
   </div>
