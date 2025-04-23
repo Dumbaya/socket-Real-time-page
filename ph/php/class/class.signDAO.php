@@ -16,7 +16,7 @@
 			SELECT * FROM user WHERE 
 		";
 
-		function insertInfo($obj){//commonDAOë¡œ ë³´ë‚´ê¸°
+		function insertInfo($obj){//commonDAO·Î º¸³»±â
 			return $this->insert($this->insertQuery, $obj);
 		}
 

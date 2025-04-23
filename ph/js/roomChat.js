@@ -20,9 +20,35 @@ window.addEventListener('beforeunload', (event) => {
 
 const socket = io('http://localhost:3000/roomChat');
 
+document.addEventListener('DOMContentLoaded', () => {
+  const messageInput = document.getElementById('messageInput');
+
+  messageInput.addEventListener('input', () => {
+    messageInput.style.height = 'auto';
+    messageInput.style.height = messageInput.scrollHeight + 'px';
+  });
+
+	messageInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      if (e.shiftKey) {
+        return;
+      } else {
+        e.preventDefault();
+        send();
+      }
+    }
+  });
+});
+
+
 socket.on('connect', () => {
   const nickname = getSession('user_nickname');
   if (nickname) {
+		const now = new Date();
+		const formattedTime = now.toLocaleTimeString();
+
+		const chatBox = document.getElementById('chat');
+		chatBox.innerHTML += `<p><strong>System</strong> [${formattedTime}]: ${title} 방에 입장하였습니다.</p>`;
     socket.emit('reconnect_user', { nickname });
   }
 });
@@ -74,6 +100,8 @@ async function send() {
 		const filename = `${formattedTime}_${nickname}`;
 
 		for(let file of files){
+      console.log("파일 이름:", file.name);
+      console.log("파일 이름:", encodeURIComponent(file.name));
 			formData.append('files', file);
 		}
 		formData.append('nickname', nickname);
@@ -97,6 +125,7 @@ async function send() {
         });
 
         document.getElementById('file_upload').value = '';
+				document.getElementById('file_password').value = '';
       } else {
         alert('파일 업로드 실패: ' + result.message);
       }
@@ -110,17 +139,27 @@ async function send() {
 socket.on('receive_message', ({ from, message, time }) => {
   const chatBox = document.getElementById('chat');
   const formattedTime = new Date(time).toLocaleTimeString();
-
-  chatBox.innerHTML += `<p><strong>${from}</strong> [${formattedTime}]: ${message}</p>`;
+	const formattedMsg = message.replace(/\n/g, '<br>');
+	
+  chatBox.innerHTML += `
+		<div style="display: flex; align-items: flex-start; margin-bottom: 4px;">
+			<strong style="white-space: nowrap;">${from} [${formattedTime}]:&nbsp;</strong>
+			<span style="white-space: pre-line;">${formattedMsg}</span>
+		</div>
+	`;
+	chatBox.scrollTop = chatBox.scrollHeight;
 });
 socket.on('receive_file', ({ from, filename, url, time }) => {
   const chatBox = document.getElementById('chat');
 	const formattedTime = new Date(time).toLocaleTimeString();
 	const displayName = from==nickname?'나':from;
 	chatBox.innerHTML += `
-    <p><strong>${displayName}</strong> [${formattedTime}]: 
-    <a href="http://localhost:3000${url}" download><button>${filename}</button></a></p>
+		<div style="display: flex; align-items: flex-start; margin-bottom: 4px;">
+			<strong style="white-space: nowrap;">${displayName} [${formattedTime}]:&nbsp;</strong>
+			<span style="white-space: pre-line;"><a href="http://localhost:3000${url}" download><button>${filename}</button></a></span>
+		</div>
   `;
+	chatBox.scrollTop = chatBox.scrollHeight;
 });
 
 socket.on('system_message', (msg) => {

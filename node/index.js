@@ -27,7 +27,8 @@ const io = socketIO(server, {
 
 app.use(express.json());
 app.use((req, res, next) => {
-  console.log(`[요청 로그] ${req.method} ${req.url}`);
+  const decodedUrl = decodeURIComponent(req.url);
+  console.log(`[요청 로그] ${req.method} ${decodedUrl}`);
   next();
 });
 

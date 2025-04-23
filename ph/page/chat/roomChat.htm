@@ -8,6 +8,7 @@
   <script src="http://localhost:3000/socket.io/socket.io.js"></script>
 	<script type="text/javascript" src="../../js/roomChat.js"></script>
 	<script type="text/javascript" src="../../util/jszip.min.js"></script>
+  <link rel="stylesheet" href="../../css/roomChat.css">
 </head>
 <body>
   <h1>채팅방</h1>
@@ -16,11 +17,13 @@
     <p id="userCount"></p>
     <ul id="userList"></ul>
   </div>
-  <button onclick="exit()">방 나가기</button>
-	<textarea id="messageInput" style="width:200px; height:200px;" placeholder="메시지를 입력하세요"></textarea>
-	<input type="file" id="file_upload" multiple/>
-  <input type="password" id="file_password" placeholder="파일 업로드 비밀번호">
-  <button onclick="send()">전송</button>
-  <div id="chat"></div>
+  <div id="chat" style="overflow:auto; width:500px; height:500px;"></div>
+  <div>
+    <button onclick="exit()">방 나가기</button>
+    <textarea id="messageInput" style="width:300px; height:auto; min-height:40px; max-height:150px; overflow:auto;" placeholder="메시지를 입력하세요"></textarea>
+    <input type="file" id="file_upload" multiple/>
+    <input type="password" id="file_password" placeholder="파일 업로드 비밀번호">
+    <button onclick="send()">전송</button>
+  </div>
 </body>
 </html>

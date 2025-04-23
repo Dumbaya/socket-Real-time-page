@@ -64,7 +64,7 @@ module.exports = (socket, io) => {
     roomMap.addUserToRoom(room_title, nickname);
 
     socket.join(room_title);
-    socket.to(room_title).emit('system_message', `${room_title} - ${nickname}님이 입장했습니다.`);
+    socket.to(room_title).emit('system_message', `${room_title} - ${nickname}님이 입장하였습니다.`);
 
     socket.emit('joined_room_chat', { room: room_title });
 

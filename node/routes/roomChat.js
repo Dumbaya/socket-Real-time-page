@@ -4,7 +4,9 @@ const roomMap = require('../socket/roomMap');
 const router = express.Router();
 const archiver = require('archiver');
 const multer = require('multer');
+const iconv = require('iconv-lite');
 const archiverZipEncryptable = require('archiver-zip-encryptable');
+const yazl = require('yazl');
 const path = require('path');
 const fs = require('fs');
 
@@ -14,66 +16,77 @@ module.exports = (io) => {
   router.post('/', (req, res) => {
     const { my_nickname, room_title } = req.body;
 
-    console.log('[ì±„íŒ… ì°¸ê°€ ìš”ì²­]', my_nickname);
+    console.log('[Ã¤ÆÃ Âü°¡ ¿äÃ»]', my_nickname);
 
-    if (!my_nickname) console.log('[ì—ëŸ¬] my_nickname userMapì— ë‹‰ë„¤ìž„ ì—†ìŒ');
-    if (!room_title) console.log('[ì—ëŸ¬] room_title roomMapì— ë°© ì œëª© ì—†ìŒ');
+    if (!my_nickname) console.log('[¿¡·¯] my_nickname userMap¿¡ ´Ð³×ÀÓ ¾øÀ½');
+    if (!room_title) console.log('[¿¡·¯] room_title roomMap¿¡ ¹æ Á¦¸ñ ¾øÀ½');
 
     const socketId = userMap.get(my_nickname);
     const roomID = roomMap.get(room_title);
 
-    if (!socketId) console.log('[ì—ëŸ¬] socketId userMapì— ë‹‰ë„¤ìž„ ì—†ìŒ');
-    if (!roomID) console.log('[ì—ëŸ¬] roomID roomMapì— ë°© ì œëª© ì—†ìŒ');
+    if (!socketId) console.log('[¿¡·¯] socketId userMap¿¡ ´Ð³×ÀÓ ¾øÀ½');
+    if (!roomID) console.log('[¿¡·¯] roomID roomMap¿¡ ¹æ Á¦¸ñ ¾øÀ½');
     if (socketId && roomID) {
-      res.json({ message: 'ì±„íŒ… ì°¸ê°€ ì™„ë£Œ' });
+      res.json({ message: 'Ã¤ÆÃ Âü°¡ ¿Ï·á' });
     } else {
-      res.status(400).json({ message: 'í•´ë‹¹ ë‹‰ë„¤ìž„ì˜ ì†Œì¼“ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.' });
+      res.status(400).json({ message: 'ÇØ´ç ´Ð³×ÀÓÀÇ ¼ÒÄÏÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù.' });
     }
   });
-
+  
   router.post('/upload', multer({ dest: 'uploads/' }).array('files'), async (req, res) => {
     const files = req.files;
     const { password, room_title: room, nickname, filename } = req.body;
-
+  
     if (!files || !files.length || !password || !room || !nickname || !filename) {
-      return res.status(400).json({ message: 'í•„ìˆ˜ í•­ëª© ëˆ„ë½' });
+      return res.status(400).json({ message: 'ÇÊ¼ö Ç×¸ñ ´©¶ô' });
     }
 
     const uploadDir = path.join(__dirname, '..', 'uploads');
     if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
-
+  
     const tempZipPath = path.join(uploadDir, `${filename}.zip`);
     const zipOutput = fs.createWriteStream(tempZipPath);
-    
+  
     const archive = archiver('zip-encryptable', {
       zlib: { level: 9 },
       forceLocalTime: true,
-      password: password
+      password,
+      forceLocalFileHeaderEncoding: true
     });
-
+  
     archive.pipe(zipOutput);
-
+  
     files.forEach(file => {
-      archive.file(file.path, { name: file.originalname });
+      const filePath = path.join(uploadDir, file.filename);
+      const decodedFileName = iconv.decode(Buffer.from(file.originalname, 'binary'), 'utf-8');
+      archive.file(filePath, {
+        name: decodedFileName,
+        stats: fs.statSync(filePath),
+      });
     });
-
-    await archive.finalize();
-
-    await new Promise(resolve => zipOutput.on('close', resolve));
-    files.forEach(file => fs.unlinkSync(file.path));
-
-    io.to(room).emit('receive_file', {
-      filename: filename + '.zip',
-      url: `/downloads/${filename}.zip`,
-      time: new Date().toISOString(),
-      from: nickname,
-    });
-
-    res.json({
-      success: true,
-      filename: filename + '.zip',
-      downloadURL: `/downloads/${filename}.zip`
-    });
+  
+    try {
+      await archive.finalize();
+      await new Promise(resolve => zipOutput.on('close', resolve));
+  
+      files.forEach(file => fs.unlinkSync(file.path));
+  
+      io.to(room).emit('receive_file', {
+        filename: `${filename}.zip`,
+        url: `/downloads/${filename}.zip`,
+        time: new Date().toISOString(),
+        from: nickname,
+      });
+  
+      res.json({
+        success: true,
+        filename: `${filename}.zip`,
+        downloadURL: `/downloads/${filename}.zip`
+      });
+    } catch (err) {
+      console.error('[¾ÐÃà ½ÇÆÐ]', err);
+      res.status(500).json({ message: '¾ÐÃà Áß ¿À·ù ¹ß»ý' });
+    }
   });
 
   return router;

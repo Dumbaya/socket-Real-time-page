@@ -4,9 +4,9 @@
 		var $stmt = null;
 
 		function connect($hostname='mysql', $dbname='socket_study', $username='root', $password='root'){
-			$dsn = "mysql:host={$hostname};dbname={$dbname};charset=utf8mb4";
+			$dsn = "mysql:host={$hostname};dbname={$dbname};charset=euckr";
 			try{
-        $this->pdo = new PDO($dsn, $username, $password);
+        $this->pdo = new PDO($dsn, $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'euckr'"));
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 				$this->con = $this->pdo;

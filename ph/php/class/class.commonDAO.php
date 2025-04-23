@@ -3,8 +3,8 @@
 	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.commonObject.php');
 
 	class commonDAO extends DB{
-		private $dbEncoding = 'UTF-8';
-		private $viewEncoding = 'EUC-KR';
+		private $dbEncoding = 'EUC-KR';
+		private $viewEncoding = 'UTF-8';
 
 		function __construct()
 		{

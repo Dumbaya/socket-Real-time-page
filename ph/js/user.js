@@ -7,6 +7,7 @@ $(document).ready(function () {
 });
 
 function sign_in(){
+	console.log("test");
 	if(!$("#user_id").val()){
 		alert('아이디를 입력해주세요.');
 		$('#user_id').focus();
@@ -19,7 +20,7 @@ function sign_in(){
 	}
 
 	let user_info={user_id:$('#user_id').val(), user_password:$('#user_password').val()};
-
+	console.log(user_info);
 	if(user_info){
 		$.ajax({
 			type:'post'
@@ -68,7 +69,8 @@ function sign_up(){
 	}
 
 	let user_info={user_id:$('#user_id').val(), user_password:$('#user_password').val(), user_email:$('#user_email').val(), user_nickname:$('#user_nickname').val()};
-
+	console.log(JSON.stringify(user_info));
+	// return;
 	if(user_info){
 		$.ajax({
 			type:'post'
