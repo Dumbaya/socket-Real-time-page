@@ -7,10 +7,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	function renderFileList() {
 		fileListDisplay.innerHTML = '';
-		sharedFiles.forEach(file => {
-			const li = document.createElement('li');
-			li.textContent = file.name;
-			fileListDisplay.appendChild(li);
+		sharedFiles.forEach((file, index) => {
+			const tr = document.createElement('tr');
+
+			const td_check = document.createElement('td');
+			const checkbox = document.createElement('input');
+			checkbox.type = 'checkbox';
+			checkbox.dataset.index = index;
+			td_check.appendChild(checkbox);
+			
+			const td_name = document.createElement('td');
+			td_name.style = 'width: 300px;';
+			td_name.textContent = file.name;
+
+			tr.appendChild(td_check);
+			tr.appendChild(td_name);
+			fileListDisplay.appendChild(tr);
 		});
 	}
 
@@ -43,5 +55,19 @@ document.addEventListener('DOMContentLoaded', () => {
 		e.preventDefault();
 		dropZone.style.backgroundColor = '';
 		handleFiles(e.dataTransfer.files);
+	});
+
+	document.getElementById('selectAllBtn').addEventListener('click', () => {
+		const checkboxes = fileListDisplay.querySelectorAll('input[type="checkbox"]');
+		const allChecked = [...checkboxes].every(cb => cb.checked);
+		checkboxes.forEach(cb => cb.checked = !allChecked);
+	});
+	
+	document.getElementById('deleteSelectedBtn').addEventListener('click', () => {
+		const checkboxes = fileListDisplay.querySelectorAll('input[type="checkbox"]:checked');
+		const selectedIndexes = Array.from(checkboxes).map(cb => parseInt(cb.dataset.index));
+
+		selectedIndexes.sort((a, b) => b - a).forEach(i => sharedFiles.splice(i, 1));
+		renderFileList();
 	});
 });

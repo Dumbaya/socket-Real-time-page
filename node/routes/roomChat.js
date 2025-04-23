@@ -6,11 +6,16 @@ const archiver = require('archiver');
 const multer = require('multer');
 const iconv = require('iconv-lite');
 const archiverZipEncryptable = require('archiver-zip-encryptable');
-const yazl = require('yazl');
 const path = require('path');
 const fs = require('fs');
+const { Worker } = require('worker_threads');
 
 archiver.registerFormat('zip-encryptable', archiverZipEncryptable);
+
+const upload = multer({
+  dest: 'uploads/',
+  limits: { fileSize: 1024 * 1024 * 300 }
+});
 
 module.exports = (io) => {
   router.post('/', (req, res) => {
@@ -33,7 +38,7 @@ module.exports = (io) => {
     }
   });
   
-  router.post('/upload', multer({ dest: 'uploads/' }).array('files'), async (req, res) => {
+  router.post('/upload', upload.array('files'), async (req, res) => {
     const files = req.files;
     const { password, room_title: room, nickname, filename } = req.body;
   
@@ -45,48 +50,48 @@ module.exports = (io) => {
     if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
   
     const tempZipPath = path.join(uploadDir, `${filename}.zip`);
-    const zipOutput = fs.createWriteStream(tempZipPath);
-  
-    const archive = archiver('zip-encryptable', {
-      zlib: { level: 9 },
-      forceLocalTime: true,
-      password,
-      forceLocalFileHeaderEncoding: true
+
+    const worker = new Worker(path.join(__dirname, '..', 'util', 'zipWorker.js'), {
+      workerData: {
+        files,
+        uploadDir,
+        tempZipPath,
+        password,
+      }
     });
-  
-    archive.pipe(zipOutput);
-  
-    files.forEach(file => {
-      const filePath = path.join(uploadDir, file.filename);
-      const decodedFileName = iconv.decode(Buffer.from(file.originalname, 'binary'), 'utf-8');
-      archive.file(filePath, {
-        name: decodedFileName,
-        stats: fs.statSync(filePath),
-      });
+
+    worker.on('message', msg => {
+      if (msg.success) {
+        files.forEach(file => fs.unlinkSync(file.path));
+
+        io.to(room).emit('receive_file', {
+          filename: `${filename}.zip`,
+          url: `/downloads/${filename}.zip`,
+          time: new Date().toISOString(),
+          from: nickname,
+        });
+
+        res.json({
+          success: true,
+          filename: `${filename}.zip`,
+          downloadURL: `/downloads/${filename}.zip`,
+        });
+      } else {
+        console.error('[압축 실패]', msg.error);
+        res.status(500).json({ message: '압축 중 오류 발생' });
+      }
     });
-  
-    try {
-      await archive.finalize();
-      await new Promise(resolve => zipOutput.on('close', resolve));
-  
-      files.forEach(file => fs.unlinkSync(file.path));
-  
-      io.to(room).emit('receive_file', {
-        filename: `${filename}.zip`,
-        url: `/downloads/${filename}.zip`,
-        time: new Date().toISOString(),
-        from: nickname,
-      });
-  
-      res.json({
-        success: true,
-        filename: `${filename}.zip`,
-        downloadURL: `/downloads/${filename}.zip`
-      });
-    } catch (err) {
-      console.error('[압축 실패]', err);
-      res.status(500).json({ message: '압축 중 오류 발생' });
-    }
+
+    worker.on('error', err => {
+      console.error('[워커 오류]', err);
+      res.status(500).json({ message: '압축 워커 오류 발생' });
+    });
+
+    worker.on('exit', code => {
+      if (code !== 0) {
+        console.error(`[워커 비정상 종료] code: ${code}`);
+      }
+    });
   });
 
   return router;

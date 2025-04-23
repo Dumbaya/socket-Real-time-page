@@ -42,19 +42,25 @@ socket.on('update_room_list', (roomList) => {
 	}
 	else{
 		roomList.forEach(room => {
-			const li = document.createElement('li');
-			li.textContent = room;
+			const tr = document.createElement('tr');
+			const td_name = document.createElement('td');
+			const td_btn = document.createElement('td');
+
+			td_name.style = 'width:300px;';
+			td_name.textContent = room;
 
 			const btn = document.createElement('button');
-			btn.style = 'margin-left: 50px;'
 			btn.textContent = '입장하기';
 			btn.onclick = () => {
 				setSession('room_title', room);
 				navigate('./roomChat.htm');
 			};
+			td_btn.style = 'width:100px;';
+			td_btn.appendChild(btn);
 
-			li.appendChild(btn);
-			roomListBox.appendChild(li);
+			tr.appendChild(td_name);
+			tr.appendChild(td_btn);
+			roomListBox.appendChild(tr);
 		});
 	}
 

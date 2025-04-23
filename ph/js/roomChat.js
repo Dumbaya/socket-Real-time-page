@@ -1,6 +1,19 @@
 const nickname = getSession('user_nickname');
 const title = getSession('room_title');
 
+function escapeHtml(str) {
+  return str.replace(/[&<>"']/g, function (match) {
+    const map = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#039;',
+    };
+    return map[match];
+  });
+}
+
 window.addEventListener('beforeunload', (event) => {
 	event.preventDefault();
 
@@ -38,8 +51,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
-});
 
+  messageInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      const start = this.selectionStart;
+      const end = this.selectionEnd;
+      this.value = this.value.substring(0, start) + "\t" + this.value.substring(end);
+      this.selectionStart = this.selectionEnd = start + 1;
+    }
+  });
+
+  const room_title = document.getElementById('room_title');
+  room_title.innerHTML += title;
+});
 
 socket.on('connect', () => {
   const nickname = getSession('user_nickname');
@@ -48,7 +73,13 @@ socket.on('connect', () => {
 		const formattedTime = now.toLocaleTimeString();
 
 		const chatBox = document.getElementById('chat');
-		chatBox.innerHTML += `<p><strong>System</strong> [${formattedTime}]: ${title} 방에 입장하였습니다.</p>`;
+    chatBox.innerHTML += `
+      <div class="grid-wrapper center">
+        <div class="system-message">
+          <span class="text_container">System [${formattedTime}]: ${title} 방에 입장하였습니다.</span>
+        </div>
+      </div>
+    `;
     socket.emit('reconnect_user', { nickname });
   }
 });
@@ -128,7 +159,7 @@ async function send() {
         document.getElementById('file_list').innerHTML = '';
 				document.getElementById('file_password').value = '';
       } else {
-        alert('파일 업로드 실패: ' + result.message);
+        alert('파일 업로드 실패: ' + decodeURIComponent(result.message));
       }
     } catch (err) {
       console.error(err);
@@ -140,13 +171,22 @@ async function send() {
 socket.on('receive_message', ({ from, message, time }) => {
   const chatBox = document.getElementById('chat');
   const formattedTime = new Date(time).toLocaleTimeString();
-	const formattedMsg = message.replace(/\n/g, '<br>');
+	const formattedMsg = escapeHtml(message);
+  
+  const isSelf = from == '나'?true :false;
+
+  const messageStyle = isSelf==true ? 'grid-wrapper right' : 'grid-wrapper left';
 	
   chatBox.innerHTML += `
-		<div style="display: flex; align-items: flex-start; margin-bottom: 4px;">
-			<strong style="white-space: nowrap;">${from} [${formattedTime}]:&nbsp;</strong>
-			<span style="white-space: pre-line;">${formattedMsg}</span>
-		</div>
+    <div class="${messageStyle}">
+      <div class="message-container">
+        <div class="nickname">${from}</div>
+        <div class="bubble">
+          <span class="text_container">${formattedMsg}</span>
+        </div>
+        <div class="time">${formattedTime}</div>
+      </div>
+    </div>
 	`;
 	chatBox.scrollTop = chatBox.scrollHeight;
 });
@@ -154,11 +194,24 @@ socket.on('receive_file', ({ from, filename, url, time }) => {
   const chatBox = document.getElementById('chat');
 	const formattedTime = new Date(time).toLocaleTimeString();
 	const displayName = from==nickname?'나':from;
+
+  const isSelf = from === nickname;
+  const messageStyle = isSelf ? 'grid-wrapper right' : 'grid-wrapper left';
+
 	chatBox.innerHTML += `
-		<div style="display: flex; align-items: flex-start; margin-bottom: 4px;">
-			<strong style="white-space: nowrap;">${displayName} [${formattedTime}]:&nbsp;</strong>
-			<span style="white-space: pre-line;"><a href="http://localhost:3000${url}" download><button>${filename}</button></a></span>
-		</div>
+    <div class="${messageStyle}">
+      <div class="message-container">
+        <div class="nickname">${displayName}</div>
+        <div class="bubble">
+          <span class="text_container">
+            <a href="http://localhost:3000${url}" download>
+              <button class="download-button">${filename}</button>
+            </a>
+          </span>
+        </div>
+        <div class="time">${formattedTime}</div>
+      </div>
+    </div>
   `;
 	chatBox.scrollTop = chatBox.scrollHeight;
 });
@@ -167,8 +220,16 @@ socket.on('system_message', (msg) => {
   const now = new Date();
   const formattedTime = now.toLocaleTimeString();
   const chatBox = document.getElementById('chat');
+  const formattedMsg = escapeHtml(msg).replace(/\n/g, '<br>');
 
-  chatBox.innerHTML += `<p><strong>System</strong> [${formattedTime}]: ${msg}</p>`;
+  chatBox.innerHTML += `
+    <div class="grid-wrapper center">
+      <div class="system-message">
+        <span class="text_container">System [${formattedTime}]: ${formattedMsg}</span>
+      </div>
+    </div>
+  `;
+  chatBox.scrollTop = chatBox.scrollHeight;
 });
 
 function exit() {
@@ -200,9 +261,12 @@ socket.on('update_user_list', (userList) => {
   userListBox.innerHTML = '';
 
   userList.forEach(user => {
-    const item = document.createElement('li');
-    item.textContent = user;
-    userListBox.appendChild(item);
+    const td = document.createElement('td');
+    const tr = document.createElement('tr');
+    td.textContent = user;
+
+    tr.appendChild(td);
+    userListBox.appendChild(tr);
   });
 
   document.getElementById('userCount').textContent = `현재 유저 수: ${userList.length}`;

@@ -11,21 +11,40 @@
   <link rel="stylesheet" href="../../css/roomChat.css">
 </head>
 <body>
-  <h1>채팅방</h1>
-  <div>
-    <h1 id="room_title"></h1>
-    <p id="userCount"></p>
-    <ul id="userList"></ul>
+  <div id="room_header">
+    <h1>채팅방</h1>
+    <div id="div_roomTitle">
+      <h3 id="room_title"></h3>
+      <button id="exit_btn" onclick="exit()">방 나가기</button>
+    </div>
   </div>
-  <div id="chat" style="overflow:auto; width:500px; height:500px;"></div>
-  <div>
-    <button onclick="exit()">방 나가기</button>
-    <textarea id="messageInput" style="width:300px; height:auto; min-height:40px; max-height:150px; overflow:auto;" placeholder="메시지를 입력하세요"></textarea>
-    <div id="drop-zone">여기로 파일을 드래그하거나 클릭해서 업로드하세요</div>
-    <input type="file" id="file_upload" multiple style="display:none" />
-    <ul id="file_list"></ul>
-    <input type="password" id="file_password" placeholder="파일 업로드 비밀번호">
-    <button onclick="send()">전송</button>
+  <hr>
+  <div id="total">
+    <div id="chat"></div>
+    <div id="func">
+      <div id="div_msg">
+        <textarea id="messageInput" placeholder="메시지를 입력하세요"></textarea>
+        <button id="send_btn" onclick="send()">전송</button>
+      </div>
+
+      <div id="drop-zone">여기로 파일을 드래그하거나 클릭해서 업로드하세요</div>
+      <input type="file" id="file_upload" multiple style="display:none" />
+
+      <div id="div_fileSend">
+        <button id="selectAllBtn">전체 선택</button>
+        <button id="deleteSelectedBtn">선택 삭제</button>
+        <input type="password" id="file_password" placeholder="파일 업로드 비밀번호">
+      </div>
+      <div id="fileList_wrap">
+        <table id="file_list"></table>
+      </div>
+    </div>
+    <div id="list">
+      <p id="userCount"></p>
+      <div id="userList_wrap">
+        <table id="userList"></table>
+      </div>
+    </div>
   </div>
 </body>
 </html>
