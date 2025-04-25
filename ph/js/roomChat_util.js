@@ -80,3 +80,16 @@ document.addEventListener('DOMContentLoaded', () => {
 		renderFileList();
 	});
 });
+
+function reset(){
+	sharedFiles = [];
+	
+	const fileListWrap = document.getElementById('fileList_wrap');
+
+	if (sharedFiles.length == 0) {
+		fileListWrap.style.display = 'none';
+		return;
+	}
+
+	fileListWrap.style.display = 'block';
+}

@@ -63,7 +63,7 @@
 		];
 		
 		$context  = stream_context_create($options);
-		$result = file_get_contents("http://node:3000/ranChat", false, $context);
+		$result = file_get_contents("/ranChat", false, $context);
 		
 		if ($result === FALSE) {
 				echo json_encode([

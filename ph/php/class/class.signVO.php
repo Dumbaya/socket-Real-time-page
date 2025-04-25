@@ -1,6 +1,7 @@
 <?php
-	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.signDAO.php');
-	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.common.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/ph/php/class/class.signDAO.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/ph/php/class/class.common.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/ph/php/class/class.commonObject.php');
 
 	class signVO extends commonObject{
 		var $user_id;

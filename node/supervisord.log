@@ -1,0 +1,275 @@
+2025-04-24 10:23:05,965 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-24 10:23:05,972 INFO supervisord started with pid 1
+2025-04-24 10:23:06,977 INFO spawned: 'httpd' with pid 10
+2025-04-24 10:23:06,979 INFO spawned: 'nodejs' with pid 11
+2025-04-24 10:23:07,163 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 10:23:08,165 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-24 10:23:08,167 INFO spawned: 'nodejs' with pid 23
+2025-04-24 10:23:08,218 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 10:23:10,223 INFO spawned: 'nodejs' with pid 30
+2025-04-24 10:23:10,273 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 10:23:13,280 INFO spawned: 'nodejs' with pid 37
+2025-04-24 10:23:13,332 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 10:23:14,334 INFO gave up: nodejs entered FATAL state, too many start retries too quickly
+2025-04-24 10:23:58,388 WARN received SIGTERM indicating exit request
+2025-04-24 10:23:58,389 INFO waiting for httpd to die
+2025-04-24 10:23:59,423 INFO stopped: httpd (exit status 0)
+2025-04-24 10:24:00,350 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-24 10:24:00,356 INFO supervisord started with pid 1
+2025-04-24 10:24:01,358 INFO spawned: 'httpd' with pid 9
+2025-04-24 10:24:01,361 INFO spawned: 'nodejs' with pid 10
+2025-04-24 10:24:01,409 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 10:24:02,411 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-24 10:24:02,414 INFO spawned: 'nodejs' with pid 22
+2025-04-24 10:24:02,466 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 10:24:04,474 INFO spawned: 'nodejs' with pid 29
+2025-04-24 10:24:04,520 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 10:24:07,527 INFO spawned: 'nodejs' with pid 36
+2025-04-24 10:24:07,581 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 10:24:08,583 INFO gave up: nodejs entered FATAL state, too many start retries too quickly
+2025-04-24 10:31:07,074 WARN received SIGTERM indicating exit request
+2025-04-24 10:31:07,074 INFO waiting for httpd to die
+2025-04-24 10:31:08,178 INFO stopped: httpd (exit status 0)
+2025-04-24 10:31:09,341 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-24 10:31:09,348 INFO supervisord started with pid 1
+2025-04-24 10:31:10,351 INFO spawned: 'httpd' with pid 9
+2025-04-24 10:31:10,354 INFO spawned: 'nodejs' with pid 10
+2025-04-24 10:31:10,463 WARN exited: httpd (exit status 1; not expected)
+2025-04-24 10:31:10,568 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 10:31:11,571 INFO spawned: 'httpd' with pid 17
+2025-04-24 10:31:11,573 INFO spawned: 'nodejs' with pid 18
+2025-04-24 10:31:11,622 WARN exited: httpd (exit status 1; not expected)
+2025-04-24 10:31:11,625 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 10:31:13,630 INFO spawned: 'httpd' with pid 25
+2025-04-24 10:31:13,634 INFO spawned: 'nodejs' with pid 26
+2025-04-24 10:31:13,701 WARN exited: httpd (exit status 1; not expected)
+2025-04-24 10:31:13,718 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 10:31:16,726 INFO spawned: 'httpd' with pid 33
+2025-04-24 10:31:16,728 INFO spawned: 'nodejs' with pid 34
+2025-04-24 10:31:16,778 WARN exited: httpd (exit status 1; not expected)
+2025-04-24 10:31:16,779 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 10:31:16,779 INFO gave up: httpd entered FATAL state, too many start retries too quickly
+2025-04-24 10:31:16,780 INFO gave up: nodejs entered FATAL state, too many start retries too quickly
+2025-04-24 10:44:57,757 WARN received SIGTERM indicating exit request
+2025-04-24 10:46:48,550 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-24 10:46:48,556 INFO supervisord started with pid 1
+2025-04-24 10:46:49,559 INFO spawned: 'httpd' with pid 8
+2025-04-24 10:46:49,561 INFO spawned: 'nodejs' with pid 9
+2025-04-24 10:46:49,772 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 10:46:50,774 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-24 10:46:50,775 INFO spawned: 'nodejs' with pid 21
+2025-04-24 10:46:50,825 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 10:46:52,829 INFO spawned: 'nodejs' with pid 28
+2025-04-24 10:46:52,877 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 10:46:55,882 INFO spawned: 'nodejs' with pid 35
+2025-04-24 10:46:55,929 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 10:46:56,930 INFO gave up: nodejs entered FATAL state, too many start retries too quickly
+2025-04-24 10:48:04,007 WARN received SIGTERM indicating exit request
+2025-04-24 10:48:04,008 INFO waiting for httpd to die
+2025-04-24 10:48:05,041 INFO stopped: httpd (exit status 0)
+2025-04-24 10:48:05,971 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-24 10:48:05,977 INFO supervisord started with pid 1
+2025-04-24 10:48:06,980 INFO spawned: 'httpd' with pid 9
+2025-04-24 10:48:06,984 INFO spawned: 'nodejs' with pid 10
+2025-04-24 10:48:07,038 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 10:48:08,040 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-24 10:48:08,042 INFO spawned: 'nodejs' with pid 22
+2025-04-24 10:48:08,086 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 10:48:10,089 INFO spawned: 'nodejs' with pid 29
+2025-04-24 10:48:10,138 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 10:48:13,146 INFO spawned: 'nodejs' with pid 36
+2025-04-24 10:48:13,193 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 10:48:14,195 INFO gave up: nodejs entered FATAL state, too many start retries too quickly
+2025-04-24 10:53:15,559 WARN received SIGTERM indicating exit request
+2025-04-24 10:53:15,560 INFO waiting for httpd to die
+2025-04-24 10:53:16,594 INFO stopped: httpd (exit status 0)
+2025-04-24 11:03:59,136 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-24 11:03:59,143 INFO supervisord started with pid 1
+2025-04-24 11:04:00,146 INFO spawned: 'httpd' with pid 9
+2025-04-24 11:04:00,149 INFO spawned: 'nodejs' with pid 10
+2025-04-24 11:04:00,201 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 11:04:01,202 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-24 11:04:01,204 INFO spawned: 'nodejs' with pid 22
+2025-04-24 11:04:01,254 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 11:04:03,259 INFO spawned: 'nodejs' with pid 29
+2025-04-24 11:04:03,306 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 11:04:06,312 INFO spawned: 'nodejs' with pid 36
+2025-04-24 11:04:06,360 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 11:04:07,362 INFO gave up: nodejs entered FATAL state, too many start retries too quickly
+2025-04-24 14:30:54,544 WARN received SIGTERM indicating exit request
+2025-04-24 14:30:54,548 INFO waiting for httpd to die
+2025-04-24 14:30:55,675 INFO stopped: httpd (exit status 0)
+2025-04-24 14:30:57,217 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-24 14:30:57,223 INFO supervisord started with pid 1
+2025-04-24 14:30:58,226 INFO spawned: 'httpd' with pid 9
+2025-04-24 14:30:58,229 INFO spawned: 'nodejs' with pid 10
+2025-04-24 14:30:58,346 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 14:30:59,348 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-24 14:30:59,351 INFO spawned: 'nodejs' with pid 22
+2025-04-24 14:30:59,420 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 14:31:01,424 INFO spawned: 'nodejs' with pid 29
+2025-04-24 14:31:01,481 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 14:31:04,486 INFO spawned: 'nodejs' with pid 37
+2025-04-24 14:31:04,562 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 14:31:05,564 INFO gave up: nodejs entered FATAL state, too many start retries too quickly
+2025-04-24 14:32:56,694 WARN received SIGTERM indicating exit request
+2025-04-24 14:32:56,695 INFO waiting for httpd to die
+2025-04-24 14:32:57,729 INFO stopped: httpd (exit status 0)
+2025-04-24 14:32:58,740 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-24 14:32:58,751 INFO supervisord started with pid 1
+2025-04-24 14:32:59,754 INFO spawned: 'httpd' with pid 9
+2025-04-24 14:32:59,757 INFO spawned: 'nodejs' with pid 10
+2025-04-24 14:32:59,831 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 14:33:00,832 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-24 14:33:00,834 INFO spawned: 'nodejs' with pid 22
+2025-04-24 14:33:00,900 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 14:33:02,905 INFO spawned: 'nodejs' with pid 29
+2025-04-24 14:33:02,960 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 14:33:05,966 INFO spawned: 'nodejs' with pid 36
+2025-04-24 14:33:06,024 WARN exited: nodejs (exit status 1; not expected)
+2025-04-24 14:33:07,026 INFO gave up: nodejs entered FATAL state, too many start retries too quickly
+2025-04-25 09:07:22,102 WARN received SIGTERM indicating exit request
+2025-04-25 09:07:22,119 INFO waiting for httpd to die
+2025-04-25 09:07:23,545 INFO stopped: httpd (exit status 0)
+2025-04-25 09:12:31,839 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-25 09:12:31,848 INFO supervisord started with pid 1
+2025-04-25 09:12:32,851 INFO spawned: 'httpd' with pid 10
+2025-04-25 09:12:32,855 INFO spawned: 'nodejs' with pid 11
+2025-04-25 09:12:33,904 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 09:12:33,905 INFO success: nodejs entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 09:19:26,344 WARN received SIGTERM indicating exit request
+2025-04-25 09:19:26,345 INFO waiting for httpd, nodejs to die
+2025-04-25 09:19:26,348 WARN stopped: nodejs (terminated by SIGTERM)
+2025-04-25 09:19:26,396 INFO stopped: httpd (exit status 0)
+2025-04-25 09:19:27,310 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-25 09:19:27,315 INFO supervisord started with pid 1
+2025-04-25 09:19:28,318 INFO spawned: 'httpd' with pid 9
+2025-04-25 09:19:28,321 INFO spawned: 'nodejs' with pid 10
+2025-04-25 09:19:29,363 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 09:19:29,363 INFO success: nodejs entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 09:23:19,492 WARN received SIGTERM indicating exit request
+2025-04-25 09:23:19,493 INFO waiting for httpd, nodejs to die
+2025-04-25 09:23:19,497 WARN stopped: nodejs (terminated by SIGTERM)
+2025-04-25 09:23:19,530 INFO stopped: httpd (exit status 0)
+2025-04-25 09:25:45,020 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-25 09:25:45,027 INFO supervisord started with pid 1
+2025-04-25 09:25:46,033 INFO spawned: 'httpd' with pid 9
+2025-04-25 09:25:46,039 INFO spawned: 'nodejs' with pid 10
+2025-04-25 09:25:47,087 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 09:25:47,087 INFO success: nodejs entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 09:30:12,706 WARN received SIGTERM indicating exit request
+2025-04-25 09:30:12,709 INFO waiting for httpd, nodejs to die
+2025-04-25 09:30:12,716 WARN stopped: nodejs (terminated by SIGTERM)
+2025-04-25 09:30:12,761 INFO stopped: httpd (exit status 0)
+2025-04-25 09:30:13,576 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-25 09:30:13,582 INFO supervisord started with pid 1
+2025-04-25 09:30:14,585 INFO spawned: 'httpd' with pid 9
+2025-04-25 09:30:14,587 INFO spawned: 'nodejs' with pid 10
+2025-04-25 09:30:15,627 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 09:30:15,628 INFO success: nodejs entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 09:39:42,306 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-25 09:39:42,313 INFO supervisord started with pid 1
+2025-04-25 09:39:43,317 INFO spawned: 'httpd' with pid 9
+2025-04-25 09:39:43,321 INFO spawned: 'nodejs' with pid 10
+2025-04-25 09:39:44,379 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 09:39:44,380 INFO success: nodejs entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 09:42:09,206 WARN received SIGTERM indicating exit request
+2025-04-25 09:42:09,207 INFO waiting for httpd, nodejs to die
+2025-04-25 09:42:09,209 WARN stopped: nodejs (terminated by SIGTERM)
+2025-04-25 09:42:09,251 INFO stopped: httpd (exit status 0)
+2025-04-25 09:42:10,081 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-25 09:42:10,087 INFO supervisord started with pid 1
+2025-04-25 09:42:11,090 INFO spawned: 'httpd' with pid 9
+2025-04-25 09:42:11,094 INFO spawned: 'nodejs' with pid 10
+2025-04-25 09:42:12,133 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 09:42:12,134 INFO success: nodejs entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 09:44:36,965 WARN received SIGTERM indicating exit request
+2025-04-25 09:44:36,966 INFO waiting for httpd, nodejs to die
+2025-04-25 09:44:36,969 WARN stopped: nodejs (terminated by SIGTERM)
+2025-04-25 09:44:37,001 INFO stopped: httpd (exit status 0)
+2025-04-25 09:47:48,615 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-25 09:47:48,621 INFO supervisord started with pid 1
+2025-04-25 09:47:49,624 INFO spawned: 'httpd' with pid 9
+2025-04-25 09:47:49,627 INFO spawned: 'nodejs' with pid 10
+2025-04-25 09:47:50,674 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 09:47:50,674 INFO success: nodejs entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 09:54:58,291 WARN received SIGTERM indicating exit request
+2025-04-25 09:54:58,292 INFO waiting for httpd, nodejs to die
+2025-04-25 09:54:58,295 WARN stopped: nodejs (terminated by SIGTERM)
+2025-04-25 09:54:58,336 INFO stopped: httpd (exit status 0)
+2025-04-25 09:57:05,320 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-25 09:57:05,328 INFO supervisord started with pid 1
+2025-04-25 09:57:06,332 INFO spawned: 'httpd' with pid 9
+2025-04-25 09:57:06,336 INFO spawned: 'nodejs' with pid 10
+2025-04-25 09:57:07,379 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 09:57:07,380 INFO success: nodejs entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 09:58:07,491 WARN received SIGTERM indicating exit request
+2025-04-25 09:58:07,492 INFO waiting for httpd, nodejs to die
+2025-04-25 09:58:07,495 WARN stopped: nodejs (terminated by SIGTERM)
+2025-04-25 09:58:07,529 INFO stopped: httpd (exit status 0)
+2025-04-25 09:59:47,510 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-25 09:59:47,519 INFO supervisord started with pid 1
+2025-04-25 09:59:48,521 INFO spawned: 'httpd' with pid 9
+2025-04-25 09:59:48,524 INFO spawned: 'nodejs' with pid 10
+2025-04-25 09:59:49,574 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 09:59:49,574 INFO success: nodejs entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 10:01:30,439 WARN received SIGTERM indicating exit request
+2025-04-25 10:01:30,440 INFO waiting for httpd, nodejs to die
+2025-04-25 10:01:30,444 WARN stopped: nodejs (terminated by SIGTERM)
+2025-04-25 10:01:30,500 INFO stopped: httpd (exit status 0)
+2025-04-25 10:01:31,621 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-25 10:01:31,627 INFO supervisord started with pid 1
+2025-04-25 10:01:32,629 INFO spawned: 'httpd' with pid 9
+2025-04-25 10:01:32,632 INFO spawned: 'nodejs' with pid 10
+2025-04-25 10:01:33,672 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 10:01:33,673 INFO success: nodejs entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 10:13:14,230 WARN received SIGTERM indicating exit request
+2025-04-25 10:13:14,231 INFO waiting for httpd, nodejs to die
+2025-04-25 10:13:14,235 WARN stopped: nodejs (terminated by SIGTERM)
+2025-04-25 10:13:14,279 INFO stopped: httpd (exit status 0)
+2025-04-25 10:15:19,536 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-25 10:15:19,547 INFO supervisord started with pid 1
+2025-04-25 10:15:20,552 INFO spawned: 'httpd' with pid 9
+2025-04-25 10:15:20,557 INFO spawned: 'nodejs' with pid 10
+2025-04-25 10:15:21,611 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 10:15:21,611 INFO success: nodejs entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 11:12:44,097 WARN received SIGTERM indicating exit request
+2025-04-25 11:12:44,099 INFO waiting for httpd, nodejs to die
+2025-04-25 11:12:44,105 WARN stopped: nodejs (terminated by SIGTERM)
+2025-04-25 11:12:44,156 INFO stopped: httpd (exit status 0)
+2025-04-25 11:36:59,978 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-25 11:36:59,985 INFO supervisord started with pid 1
+2025-04-25 11:37:00,994 INFO spawned: 'httpd' with pid 9
+2025-04-25 11:37:00,997 INFO spawned: 'nodejs' with pid 10
+2025-04-25 11:37:02,152 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 11:37:02,152 INFO success: nodejs entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 13:01:24,501 WARN received SIGTERM indicating exit request
+2025-04-25 13:01:24,502 INFO waiting for httpd, nodejs to die
+2025-04-25 13:01:24,505 WARN stopped: nodejs (terminated by SIGTERM)
+2025-04-25 13:01:24,605 INFO stopped: httpd (exit status 0)
+2025-04-25 13:03:35,115 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-25 13:03:35,136 INFO supervisord started with pid 1
+2025-04-25 13:03:36,142 INFO spawned: 'httpd' with pid 9
+2025-04-25 13:03:36,144 INFO spawned: 'nodejs' with pid 10
+2025-04-25 13:03:37,195 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 13:03:37,196 INFO success: nodejs entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 13:10:54,810 WARN received SIGTERM indicating exit request
+2025-04-25 13:10:54,811 INFO waiting for httpd, nodejs to die
+2025-04-25 13:10:54,814 WARN stopped: nodejs (terminated by SIGTERM)
+2025-04-25 13:10:54,848 INFO stopped: httpd (exit status 0)
+2025-04-25 13:10:55,895 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-25 13:10:55,899 INFO supervisord started with pid 1
+2025-04-25 13:10:56,902 INFO spawned: 'httpd' with pid 15
+2025-04-25 13:10:56,905 INFO spawned: 'nodejs' with pid 16
+2025-04-25 13:10:57,952 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 13:10:57,953 INFO success: nodejs entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 13:18:14,254 WARN received SIGTERM indicating exit request
+2025-04-25 13:18:14,257 INFO waiting for httpd, nodejs to die
+2025-04-25 13:18:14,265 WARN stopped: nodejs (terminated by SIGTERM)
+2025-04-25 13:18:14,363 INFO stopped: httpd (exit status 0)
+2025-04-25 13:18:15,342 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-25 13:18:15,348 INFO supervisord started with pid 1
+2025-04-25 13:18:16,350 INFO spawned: 'httpd' with pid 9
+2025-04-25 13:18:16,352 INFO spawned: 'nodejs' with pid 10
+2025-04-25 13:18:17,446 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 13:18:17,447 INFO success: nodejs entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)

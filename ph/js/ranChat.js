@@ -1,5 +1,5 @@
 
-const socket = io('http://localhost:3000/ranChat');
+const socket = io('/ranChat');
 const nickname = getSession('user_nickname');
 
 socket.emit('register_nickname', nickname);

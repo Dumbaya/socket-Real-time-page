@@ -26,7 +26,7 @@
 		];
 		
 		$context  = stream_context_create($options);
-		$result = file_get_contents("http://node:3000/fileChat", false, $context);
+		$result = file_get_contents("/fileChat", false, $context);
 		
 		if ($result === FALSE) {
 				echo json_encode([

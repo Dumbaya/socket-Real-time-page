@@ -3,7 +3,7 @@
 	$infoData = file_get_contents("php://input");
 	$info = json_decode($infoData, true);
 	if($info && isset($info['user_id'])){
-		include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.signVO.php');
+		include_once($_SERVER['DOCUMENT_ROOT'].'/ph/php/class/class.signVO.php');
 		$sv = new signVO();
 
 		$sv->before_siChk($info['user_id'], $info['user_password']);

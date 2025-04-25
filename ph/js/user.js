@@ -40,7 +40,8 @@ function sign_in(){
 				}
 			}
 			, error : function(xhr, status, error) {
-				alert("서버 연결에 실패했습니다.");
+				alert("서버 연결에 실패했습니다."+error+xhr.responseText);
+				console.log("서버 연결에 실패했습니다."+error+xhr.responseText);
 			}
 		})
 	}
@@ -89,6 +90,7 @@ function sign_up(){
 			}
 			, error : function(xhr, status, error) {
 				alert("서버 연결에 실패했습니다."+error+xhr.responseText);
+				console.log("서버 연결에 실패했습니다."+error+xhr.responseText);
 			}
 		})
 	}

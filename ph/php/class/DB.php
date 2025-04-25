@@ -3,7 +3,7 @@
 		var $con = null;
 		var $stmt = null;
 
-		function connect($hostname='mysql', $dbname='socket_study', $username='root', $password='root'){
+		function connect($hostname='newmysql_test', $dbname='test_socket', $username='root', $password='root'){
 			$dsn = "mysql:host={$hostname};dbname={$dbname};charset=euckr";
 			try{
         $this->pdo = new PDO($dsn, $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'euckr'"));

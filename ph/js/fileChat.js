@@ -21,7 +21,7 @@ window.addEventListener('beforeunload', (event) => {
 	})
 });
 
-const socket = io('http://localhost:3000/fileChat');
+const socket = io('/fileChat');
 
 socket.emit('register_nickname', nickname);
 
@@ -81,7 +81,7 @@ socket.on('receive_message', ({ from, filename, url, time }) => {
 
 	chatBox.innerHTML += `
     <p><strong>${from}</strong> [${formattedTime}]: 
-    <a href="http://localhost:3000${url}" download><button>${filename}</button></a></p>
+    <a href="${url}" download><button>${filename}</button></a></p>
   `;
 });
 

@@ -1,4 +1,4 @@
-const socket = io('http://localhost:3000/roomChat');
+const socket = io('/roomChat');
 
 function makeRoom_open_popup(){
 	

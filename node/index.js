@@ -19,7 +19,7 @@ const server = http.createServer(app);
 app.use(cors());
 const io = socketIO(server, {
   cors: {
-    origin: 'http://localhost',
+    origin: ['http://sockettest'],
     methods: ['GET', 'POST'],
     credentials: true
   }

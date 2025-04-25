@@ -26,12 +26,12 @@ window.addEventListener('beforeunload', (event) => {
   })
     .then(res => res.json())
     .then(data => {
-      console.log('PHP 응답:', data);
+      // console.log('PHP 응답:', data.message);
       if (data.flag === 'fail') chatBox.innerHTML += `<p><strong>System</strong> [${formattedTime}]: ${data.message} / detail : ${data.detail}</p>`;;
 	});
 });
 
-const socket = io('http://localhost:3000/roomChat');
+const socket = io('/roomChat');
 
 document.addEventListener('DOMContentLoaded', () => {
   const messageInput = document.getElementById('messageInput');
@@ -142,7 +142,7 @@ async function send() {
 		formData.append('filename', filename);
 
 		try {
-      const res = await fetch('http://localhost:3000/roomChat/upload', {
+      const res = await fetch('/roomChat/upload', {
         method: 'POST',
         body: formData,
       });
@@ -203,7 +203,7 @@ socket.on('receive_file', ({ from, filename, url, time }) => {
 <div class="nickname">${displayName}</div>
 <div class="bubble">
 <span class="text_container">
-<a href="http://localhost:3000${url}" download>
+<a href="${url}" download>
 <button class="download-button">${filename}</button>
 </a>
 </span>

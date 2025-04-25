@@ -26,7 +26,7 @@
 		];
 		
 		$context  = stream_context_create($options);
-		$result = file_get_contents("http://node:3000/chaosChat", false, $context);
+		$result = file_get_contents("/chaosChat", false, $context);
 		
 		if ($result === FALSE) {
 				echo json_encode([

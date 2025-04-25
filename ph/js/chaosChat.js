@@ -1,4 +1,4 @@
-const socket = io('http://localhost:3000/chaosChat');
+const socket = io('/chaosChat');
 const nickname = getSession('user_nickname');
 
 socket.emit('register_nickname', nickname);
