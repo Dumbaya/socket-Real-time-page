@@ -1,0 +1,3 @@
+docker build -t newcent_test .
+
+docker run -itd --name=newcent_test -p 80:80 -p 443:443 --network=my_network --volume C:\data\project\uwayapply.com\socket_study_dev:/app newcent_test
