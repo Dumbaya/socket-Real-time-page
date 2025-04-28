@@ -1,6 +1,6 @@
 <?php
-	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.roomChatDAO.php');
-	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.common.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/ph/php/class/class.roomChatDAO.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/ph/php/class/class.common.php');
 
 	class roomChatVO extends commonObject{
 		function __construct()

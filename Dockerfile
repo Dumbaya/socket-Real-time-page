@@ -41,12 +41,14 @@ php_value default_charset \"EUC-KR\"\n\
     Require all granted\n\
 </Directory>" >> /etc/httpd/conf/httpd.conf
 
-COPY ./ph/php.conf /etc/httpd/conf.d/php.conf
-COPY supervisord.conf /etc/supervisord.conf
+COPY ./php.conf /etc/httpd/conf.d/php.conf
+COPY ./supervisord.conf /etc/supervisord.conf
 COPY ./proxy_node.conf /etc/httpd/conf.d/proxy_node.conf
+COPY ./node_socket.service /etc/systemd/system/node_socket.service
 
 WORKDIR /app
-COPY . .
+COPY ./node ./node
+COPY ./ph ./ph
 
 WORKDIR /app/node
 RUN npm install
@@ -57,4 +59,4 @@ EXPOSE 80
 
 ENV TZ=Asia/Seoul
 
-CMD ["/usr/local/bin/supervisord", "-c", "/etc/supervisord.conf"]
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]

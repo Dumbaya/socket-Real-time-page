@@ -3,7 +3,7 @@
 	$userData = file_get_contents("php://input");
 	$json_data = json_decode($userData, true);
 	if($json_data && isset($json_data['user_nickname']) && isset($json_data['room_title'])){
-		include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.roomChatVO.php');
+		include_once($_SERVER['DOCUMENT_ROOT'].'/ph/php/class/class.roomChatVO.php');
 		$rv = new roomChatVO();
 
 		$my_nickname = $json_data['user_nickname'];

@@ -1,5 +1,5 @@
 <?php
-	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/DB.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/ph/php/class/DB.php');
 
 	class common{
 		private $secret_key = "socket_board_secret_key";

@@ -2,15 +2,24 @@ const userMap = require('./userMap');
 const roomMap = require('./roomMap');
 const fs = require('fs');
 const path = require('path');
+const { resetIdleTimer, getRemainingTime } = require('../util/resetIdleTimer');
 
 function broadcastUserList(io, room_title) {
   const userList = roomMap.getUsersInRoom(room_title);
+  resetIdleTimer();
+  const remainingTime = getRemainingTime();
+  const remainingTime_msg = `Remaining time: ${remainingTime / 1000} seconds`
+  socket.emit('idletimer', remainingTime_msg);
   io.to(room_title).emit('update_user_list', userList);
 }
 
 function broadcastRoomList(io) {
   const roomList = roomMap.getRooms();
   console.log(roomList);
+  resetIdleTimer();
+  const remainingTime = getRemainingTime();
+  const remainingTime_msg = `Remaining time: ${remainingTime / 1000} seconds`
+  socket.emit('idletimer', remainingTime_msg);
   io.emit('update_room_list', roomList);
 }
 
@@ -44,6 +53,10 @@ module.exports = (socket, io) => {
     console.log(`[재연결된 유저] ${nickname} - ${socket.id}`);
     socket.nickname = nickname;
     userMap.set(nickname, socket.id);
+    resetIdleTimer();
+    const remainingTime = getRemainingTime();
+    const remainingTime_msg = `Remaining time: ${remainingTime / 1000} seconds`
+    socket.emit('idletimer', remainingTime_msg);
   });
 
   socket.on('request_room_list', () => {
@@ -78,6 +91,10 @@ module.exports = (socket, io) => {
     const title = socket.title;
 
     const timestamp = new Date().toISOString();
+    resetIdleTimer();
+    const remainingTime = getRemainingTime();
+    const remainingTime_msg = `Remaining time: ${remainingTime / 1000} seconds`
+    socket.emit('idletimer', remainingTime_msg);
 
     socket.emit('receive_message', {
       from: '나',
@@ -101,6 +118,10 @@ module.exports = (socket, io) => {
 
     const safeFilename = filename.replace(/:/g, '-');
     const filePath = path.join(uploadDir, safeFilename);
+    resetIdleTimer();
+    const remainingTime = getRemainingTime();
+    const remainingTime_msg = `Remaining time: ${remainingTime / 1000} seconds`
+    socket.emit('idletimer', remainingTime_msg);
 
     fs.writeFile(filePath, Buffer.from(buffer), (err) => {
       if (err) {

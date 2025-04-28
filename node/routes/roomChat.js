@@ -9,11 +9,12 @@ const archiverZipEncryptable = require('archiver-zip-encryptable');
 const path = require('path');
 const fs = require('fs');
 const { Worker } = require('worker_threads');
+const { resetIdleTimer, getRemainingTime } = require('../util/resetIdleTimer');
 
 archiver.registerFormat('zip-encryptable', archiverZipEncryptable);
 
 const upload = multer({
-  dest: 'uploads/',
+  dest: path.join('/app/node', 'uploads'),
   limits: { fileSize: 1024 * 1024 * 300 }
 });
 
@@ -28,6 +29,10 @@ module.exports = (io) => {
 
     const socketId = userMap.get(my_nickname);
     const roomID = roomMap.get(room_title);
+    resetIdleTimer();
+    const remainingTime = getRemainingTime();
+    const remainingTime_msg = `Remaining time: ${remainingTime / 1000} seconds`
+    socket.emit('idletimer', remainingTime_msg);
 
     if (!socketId) console.log('[에러] socketId userMap에 닉네임 없음');
     if (!roomID) console.log('[에러] roomID roomMap에 방 제목 없음');
@@ -46,12 +51,12 @@ module.exports = (io) => {
       return res.status(400).json({ message: '필수 항목 누락' });
     }
 
-    const uploadDir = path.join(__dirname, '..', 'uploads');
+    const uploadDir = path.join('/app/node', 'uploads');
     if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
   
     const tempZipPath = path.join(uploadDir, `${filename}.zip`);
 
-    const worker = new Worker(path.join(__dirname, '..', 'util', 'zipWorker.js'), {
+    const worker = new Worker(path.join('/app/node/util', 'zipWorker.js'), {
       workerData: {
         files,
         uploadDir,
@@ -63,6 +68,10 @@ module.exports = (io) => {
     worker.on('message', msg => {
       if (msg.success) {
         files.forEach(file => fs.unlinkSync(file.path));
+        resetIdleTimer();
+        const remainingTime = getRemainingTime();
+        const remainingTime_msg = `Remaining time: ${remainingTime / 1000} seconds`
+        socket.emit('idletimer', remainingTime_msg);
 
         io.to(room).emit('receive_file', {
           filename: `${filename}.zip`,

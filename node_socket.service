@@ -1,0 +1,14 @@
+[Unit]
+Description=Node.js Socket Server
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/node /app/node/index.js
+WorkingDirectory=/app/node
+Restart=on-failure
+User=nobody
+Group=nobody
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target

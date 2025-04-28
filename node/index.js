@@ -4,6 +4,7 @@ const socketIO = require('socket.io');
 const path = require('path');
 const fs = require('fs');
 const cors = require('cors');
+const { resetIdleTimer, getRemainingTime } = require('./util/resetIdleTimer');
 
 const ranChatHandler = require('./socket/ranChat');
 const ranChatRoute = require('./routes/ranChat');
@@ -32,7 +33,7 @@ app.use((req, res, next) => {
   next();
 });
 
-const uploadDir = path.join(__dirname, "uploads");
+const uploadDir = path.join('/app/node', 'uploads');
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
 app.use('/downloads', express.static(uploadDir));
 
@@ -49,23 +50,43 @@ app.use('/roomChat', roomChatRoute(roomChatNamespace));
 ranChatNamespace.on('connection', (socket) => {
   console.log('[ranChat] User connected:', socket.id);
   ranChatHandler(socket, ranChatNamespace);
+  resetIdleTimer();
+  const remainingTime = getRemainingTime();
+  const remainingTime_msg = `Remaining time: ${remainingTime / 1000} seconds`
+  socket.emit('idletimer', remainingTime_msg);
 });
 
 chaosChatNamespace.on('connection', (socket) => {
   console.log('[chaosChat] User connected:', socket.id);
   chaosChatHandler(socket, chaosChatNamespace);
+  resetIdleTimer();
+  const remainingTime = getRemainingTime();
+  const remainingTime_msg = `Remaining time: ${remainingTime / 1000} seconds`
+  socket.emit('idletimer', remainingTime_msg);
 });
 
 fileChatNamespace.on('connection', (socket) => {
   console.log('[fileChat] User connected:', socket.id);
   fileChatHandler(socket, fileChatNamespace);
+  resetIdleTimer();
+  const remainingTime = getRemainingTime();
+  const remainingTime_msg = `Remaining time: ${remainingTime / 1000} seconds`
+  socket.emit('idletimer', remainingTime_msg);
 })
 
 roomChatNamespace.on('connection', (socket) => {
   console.log('[roomChat] User connected:', socket.id);
   roomChatHandler(socket, roomChatNamespace);
+  resetIdleTimer();
+  const remainingTime = getRemainingTime();
+  const remainingTime_msg = `Remaining time: ${remainingTime / 1000} seconds`
+  socket.emit('idletimer', remainingTime_msg);
 })
 
 server.listen(3000, () => {
   console.log('Server is running on port 3000');
+  resetIdleTimer();
+  const remainingTime = getRemainingTime();
+  const remainingTime_msg = `Remaining time: ${remainingTime / 1000} seconds`
+  socket.emit('idletimer', remainingTime_msg);
 });

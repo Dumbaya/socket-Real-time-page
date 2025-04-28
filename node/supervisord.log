@@ -273,3 +273,25 @@
 2025-04-25 13:18:16,352 INFO spawned: 'nodejs' with pid 10
 2025-04-25 13:18:17,446 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
 2025-04-25 13:18:17,447 INFO success: nodejs entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 15:05:04,965 WARN received SIGTERM indicating exit request
+2025-04-25 15:05:04,973 INFO waiting for httpd, nodejs to die
+2025-04-25 15:05:04,985 WARN stopped: nodejs (terminated by SIGTERM)
+2025-04-25 15:05:05,159 INFO stopped: httpd (exit status 0)
+2025-04-25 15:05:06,565 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-25 15:05:06,572 INFO supervisord started with pid 1
+2025-04-25 15:05:07,576 INFO spawned: 'httpd' with pid 9
+2025-04-25 15:05:07,585 INFO spawned: 'nodejs' with pid 10
+2025-04-25 15:05:07,588 WARN received SIGTERM indicating exit request
+2025-04-25 15:05:07,589 INFO waiting for httpd, nodejs to die
+2025-04-25 15:05:07,590 WARN stopped: nodejs (terminated by SIGTERM)
+2025-04-25 15:05:07,591 WARN stopped: httpd (terminated by SIGTERM)
+2025-04-25 15:13:19,972 CRIT Supervisor is running as root.  Privileges were not dropped because no user is specified in the config file.  If you intend to run as root, you can set user=root in the config file to avoid this message.
+2025-04-25 15:13:19,980 INFO supervisord started with pid 1
+2025-04-25 15:13:20,983 INFO spawned: 'httpd' with pid 9
+2025-04-25 15:13:20,986 INFO spawned: 'nodejs' with pid 10
+2025-04-25 15:13:22,037 INFO success: httpd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 15:13:22,038 INFO success: nodejs entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2025-04-25 15:14:51,337 WARN received SIGTERM indicating exit request
+2025-04-25 15:14:51,338 INFO waiting for httpd, nodejs to die
+2025-04-25 15:14:52,343 WARN stopped: nodejs (terminated by SIGTERM)
+2025-04-25 15:14:52,382 INFO stopped: httpd (exit status 0)

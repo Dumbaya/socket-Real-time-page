@@ -1,6 +1,6 @@
 <?php
-	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/DB.php');
-	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.commonDAO.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/ph/php/class/DB.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/ph/php/class/class.commonDAO.php');
 
 	class roomChatDAO extends commonDAO{
 		private $insertQuery = "

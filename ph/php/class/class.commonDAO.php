@@ -1,6 +1,6 @@
 <?php
-	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/DB.php');
-	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.commonObject.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/ph/php/class/DB.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/ph/php/class/class.commonObject.php');
 
 	class commonDAO extends DB{
 		private $dbEncoding = 'EUC-KR';

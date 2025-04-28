@@ -231,6 +231,10 @@ socket.on('system_message', (msg) => {
   chatBox.scrollTop = chatBox.scrollHeight;
 });
 
+socket.on('idletimer', (msg) => {
+  console.log(msg);
+})
+
 function exit() {
   if (confirm("정말 대화를 종료하시겠습니까?")) {
 		fetch('../../php/chat/roomChat_end.php', {
