@@ -9,7 +9,7 @@ function broadcastUserList(io, room_title) {
   resetIdleTimer();
   const remainingTime = getRemainingTime();
   const remainingTime_msg = `Remaining time: ${remainingTime / 1000} seconds`
-  socket.emit('idletimer', remainingTime_msg);
+  io.emit('idletimer', remainingTime_msg);
   io.to(room_title).emit('update_user_list', userList);
 }
 
@@ -19,7 +19,7 @@ function broadcastRoomList(io) {
   resetIdleTimer();
   const remainingTime = getRemainingTime();
   const remainingTime_msg = `Remaining time: ${remainingTime / 1000} seconds`
-  socket.emit('idletimer', remainingTime_msg);
+  io.emit('idletimer', remainingTime_msg);
   io.emit('update_room_list', roomList);
 }
 
@@ -56,7 +56,7 @@ module.exports = (socket, io) => {
     resetIdleTimer();
     const remainingTime = getRemainingTime();
     const remainingTime_msg = `Remaining time: ${remainingTime / 1000} seconds`
-    socket.emit('idletimer', remainingTime_msg);
+    io.emit('idletimer', remainingTime_msg);
   });
 
   socket.on('request_room_list', () => {

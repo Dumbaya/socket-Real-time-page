@@ -52,8 +52,7 @@ ranChatNamespace.on('connection', (socket) => {
   ranChatHandler(socket, ranChatNamespace);
   resetIdleTimer();
   const remainingTime = getRemainingTime();
-  const remainingTime_msg = `Remaining time: ${remainingTime / 1000} seconds`
-  socket.emit('idletimer', remainingTime_msg);
+  console.log(`Remaining time: ${remainingTime / 1000} seconds`);
 });
 
 chaosChatNamespace.on('connection', (socket) => {
@@ -61,8 +60,7 @@ chaosChatNamespace.on('connection', (socket) => {
   chaosChatHandler(socket, chaosChatNamespace);
   resetIdleTimer();
   const remainingTime = getRemainingTime();
-  const remainingTime_msg = `Remaining time: ${remainingTime / 1000} seconds`
-  socket.emit('idletimer', remainingTime_msg);
+  console.log(`Remaining time: ${remainingTime / 1000} seconds`);
 });
 
 fileChatNamespace.on('connection', (socket) => {
@@ -70,8 +68,7 @@ fileChatNamespace.on('connection', (socket) => {
   fileChatHandler(socket, fileChatNamespace);
   resetIdleTimer();
   const remainingTime = getRemainingTime();
-  const remainingTime_msg = `Remaining time: ${remainingTime / 1000} seconds`
-  socket.emit('idletimer', remainingTime_msg);
+  console.log(`Remaining time: ${remainingTime / 1000} seconds`);
 })
 
 roomChatNamespace.on('connection', (socket) => {
@@ -79,14 +76,12 @@ roomChatNamespace.on('connection', (socket) => {
   roomChatHandler(socket, roomChatNamespace);
   resetIdleTimer();
   const remainingTime = getRemainingTime();
-  const remainingTime_msg = `Remaining time: ${remainingTime / 1000} seconds`
-  socket.emit('idletimer', remainingTime_msg);
+  console.log(`Remaining time: ${remainingTime / 1000} seconds`);
 })
 
 server.listen(3000, () => {
   console.log('Server is running on port 3000');
   resetIdleTimer();
   const remainingTime = getRemainingTime();
-  const remainingTime_msg = `Remaining time: ${remainingTime / 1000} seconds`
-  socket.emit('idletimer', remainingTime_msg);
+  console.log(`Remaining time: ${remainingTime / 1000} seconds`);
 });

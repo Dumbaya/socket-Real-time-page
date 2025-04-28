@@ -32,7 +32,7 @@ module.exports = (io) => {
     resetIdleTimer();
     const remainingTime = getRemainingTime();
     const remainingTime_msg = `Remaining time: ${remainingTime / 1000} seconds`
-    socket.emit('idletimer', remainingTime_msg);
+    io.emit('idletimer', remainingTime_msg);
 
     if (!socketId) console.log('[에러] socketId userMap에 닉네임 없음');
     if (!roomID) console.log('[에러] roomID roomMap에 방 제목 없음');
@@ -71,7 +71,7 @@ module.exports = (io) => {
         resetIdleTimer();
         const remainingTime = getRemainingTime();
         const remainingTime_msg = `Remaining time: ${remainingTime / 1000} seconds`
-        socket.emit('idletimer', remainingTime_msg);
+        io.emit('idletimer', remainingTime_msg);
 
         io.to(room).emit('receive_file', {
           filename: `${filename}.zip`,
